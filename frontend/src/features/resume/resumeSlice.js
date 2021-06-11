@@ -29,8 +29,12 @@ export const resumeSlice = createSlice({
           case("type1"):
             state.chunkList[targetIdx].value.text = data
           default:
-            if(state.changeRecord["update"].find(id => id === chunkId) === undefined){
-              state.changeRecord["update"].push(chunkId)
+            const targetIdx2 = state.changeRecord["update"].findIndex(chunk => chunk.id === chunkId)
+            if(targetIdx2 === -1){
+              state.changeRecord["update"].push(state.chunkList[targetIdx])
+            }
+            else {
+              state.changeRecord["update"][targetIdx2].value.text = data
             }
             console.log(`Update chunk ${chunkId}`)
         }
@@ -62,7 +66,7 @@ export const resumeSlice = createSlice({
           ...state.chunkList.slice(insertIndex, state.chunkList.length)
         ]
         
-        state.changeRecord["update"].push(newChunk.id)
+        state.changeRecord["update"].push(newChunk)
         console.log(`Add a new chunk ${newChunk.id}`)
       },
       prepare(chunkId, type, position) {
