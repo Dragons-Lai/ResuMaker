@@ -1,17 +1,20 @@
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
 
-import {selectChunkIdList} from "./resumeSlice"
-import Chunk from "./Chunk"
+import { selectChunkIdList } from "./resumeSlice";
+import Chunk from "./Chunk";
+import Sidebar from "./sidebar";
 
-export default function ViewMode(){
-  const chunkIdList = useSelector(selectChunkIdList)
+export default function ViewMode() {
+  const chunkIdList = useSelector(selectChunkIdList);
 
-  
   return (
-    <container>
-      {
-        chunkIdList.map(chunkId => <Chunk key={chunkId} id={chunkId}/>)
-      }
-    </container>)
-  
+    <>
+      <container>
+        {chunkIdList.map((chunkId) => (
+          <Chunk key={chunkId} id={chunkId} />
+        ))}
+      </container>
+      <Sidebar />
+    </>
+  );
 }
