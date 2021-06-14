@@ -8,6 +8,7 @@ export default function Sidebar() {
   const openSidebar = useSelector(selectSidebarStatus);
   const dispatch = useDispatch();
 
+
   return openSidebar ? (
     <div className="sidebar">
       <Button
@@ -16,4 +17,5 @@ export default function Sidebar() {
       />
     </div>
   ) : null;
+
 }

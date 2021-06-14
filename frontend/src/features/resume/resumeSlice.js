@@ -1,5 +1,6 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { VIEW_MODE, DEFAULT_CHUNK_VALUE } from "./config";
+import { TITLE, DURATION, COMPANY, DESCRIPTION } from "./constants";
 
 const initialState = {
   mode: VIEW_MODE,
@@ -22,7 +23,7 @@ export const resumeSlice = createSlice({
 
     updateChunk: {
       reducer(state, action) {
-        const { chunkId, data } = action.payload;
+        const { chunkId, data, typeOfData } = action.payload;
 
         const targetIdx = state.chunkList.findIndex(
           (chunk) => chunk.id === chunkId
@@ -30,6 +31,18 @@ export const resumeSlice = createSlice({
         switch (state.chunkList[targetIdx].type) {
           case "type1":
             state.chunkList[targetIdx].value.text = data;
+          case "type2":
+            state.chunkList[targetIdx].value.text = data;
+          case "type3":
+            if (typeOfData === TITLE) {
+              state.chunkList[targetIdx].value.title = data;
+            } else if (typeOfData === DURATION) {
+              state.chunkList[targetIdx].value.duration = data;
+            } else if (typeOfData === COMPANY) {
+              state.chunkList[targetIdx].value.companyName = data;
+            } else if (typeOfData === DESCRIPTION) {
+              state.chunkList[targetIdx].value.description = data;
+            }
           default:
             if (
               state.changeRecord["update"].find((id) => id === chunkId) ===
@@ -40,9 +53,9 @@ export const resumeSlice = createSlice({
             console.log(`Update chunk ${chunkId}`);
         }
       },
-      prepare(chunkId, data) {
+      prepare(chunkId, data, typeOfData) {
         return {
-          payload: { chunkId, data },
+          payload: { chunkId, data, typeOfData },
         };
       },
     },
