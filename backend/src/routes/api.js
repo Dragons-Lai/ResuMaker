@@ -1,4 +1,6 @@
 import { Router } from "express";
+import passport from "passport"
+
 import Chunk from "../models/Chunk.js";
 import Order from "../models/Order.js";
 import User from "../models/User.js";
@@ -103,5 +105,73 @@ router.post("/updateChunk", async function (req, res) {
     res.json({ message: "Something went wrong..." });
   }
 });
+
+
+// login and register
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+ 
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+router.post('/login', passport.authenticate('login'));
+
+
+// router.post('/login', (req, res, next) => {
+//   const userInfo = {
+//     account: req.body.account, 
+//     password: req.body.password 
+//   }
+
+//   console.log("heeeeee", req.session.uid)
+
+//   User.findOne(userInfo, (err, {_id})=>{
+//     if(err){
+//       console.log("Fail on finding login user. ")
+//       res.json({ message: "Something went wrong..." });
+//     }
+//     else{
+//       if(_id){
+//         req.session.uid = _id
+//         req.session.save(err => {
+//           if(err){
+//             console.log(err);
+//           }
+//           res.end() // 不知道這裡要不要做些甚麼處置
+//         }); //THIS SAVES THE SESSION.    
+//       }
+//     }
+//   })
+// })
+
+
+router.post('/register', (req, res, next) => {
+  const userInfo = {
+    userName: req.body.userName,
+    account: req.body.account, 
+    password: req.body.password 
+  }
+
+  User.findByIdAndRemove(userInfo, (err, user) => {
+    if(err){
+      console.log("Fail on registering a user. ")
+      res.json({ message: "Something went wrong..." });
+    }
+    else{
+      if(user){
+        // console.log(userInfo)
+        const newUser = new User(userInfo)
+        newUser.save()
+        res.json({ message: "Successfully registered. " });
+      }
+      else
+        res.json({ message: "This account has been registered. " });
+    }
+  })
+})
 
 export default router;

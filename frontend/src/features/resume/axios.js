@@ -47,3 +47,16 @@ export async function saveChunk(user_id, ChunkIdList, changeRecord){
   response = await axios.post("/deleteChunks", {DeleteChunkIdList: changeRecord["delete"]})
   console.log(response.data.message);
 }
+
+
+export async function login(account, password){
+  await axios.post("/login", {account, password})
+  .then((res)=>{console.log("res", res)})
+  .catch((err) => console.log("err", err))
+}
+
+export async function register(userName, account, password){
+  await axios.post("/register", {userName, account, password})
+  .then((res)=>{console.log("res", res)})
+  .catch((err) => console.log("err", err))
+}
