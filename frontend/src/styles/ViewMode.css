@@ -1,0 +1,9 @@
+body {
+  display: grid;
+}
+
+.container {
+  left: 20%;
+  width: 60%;
+  position: relative;
+}
