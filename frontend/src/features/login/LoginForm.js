@@ -1,5 +1,5 @@
 import React, { useState } from "react"; //rfce: react function component export
-import "./LoginForm.css";
+import "../../styles/LoginForm.css";
 
 function LoginForm() {
   const adminUser = {

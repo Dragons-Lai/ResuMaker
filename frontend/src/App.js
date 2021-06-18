@@ -1,6 +1,9 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./features/login";
 import Resume from "./features/resume";
+import "./App.css";
+import "antd/dist/antd.css";
+import "./styles/_chunk.scss";
 
 function App() {
   return (
@@ -8,7 +11,7 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Login />
-        </Route>      
+        </Route>
         <Route path="/resume">
           <Resume />
         </Route>
