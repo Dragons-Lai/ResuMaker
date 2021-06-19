@@ -71,7 +71,6 @@ export const resumeSlice = createSlice({
           type: type,
           value: DEFAULT_CHUNK_VALUE[type],
         };
-        console.log(newChunk);
 
         var insertIndex = state.chunkList.findIndex(
           (chunk) => chunk.id === chunkId
@@ -96,17 +95,33 @@ export const resumeSlice = createSlice({
 
     deleteChunk: (state, action) => {
       const chunkId = action.payload;
-      if (state.chunkList.length > 1)
-        state.chunkList = state.chunkList.filter(
-          (chunk) => chunk.id !== chunkId
-        );
-      if (
-        state.changeRecord["delete"].find((id) => id === chunkId) === undefined
-      ) {
+      if (state.chunkList.length <= 1)
+        return
+
+      state.chunkList = state.chunkList.filter(
+        (chunk) => chunk.id !== chunkId
+      );
+
+      const idx_in_update_list = state.changeRecord["update"].findIndex((item) => item.id === chunkId)
+      // if (idx_in_update_list !== undefined){
+      //   state.changeRecord["update"] = [
+      //     ...state.changeRecord["update"].slice(0, idx_in_update_list), 
+      //     ...state.changeRecord["update"].slice(idx_in_update_list + 1, state.changeRecord["update"].length),
+      //   ]
+      // }
+      // else
+      if (state.changeRecord["delete"].find((id) => id === chunkId) === undefined) {
         state.changeRecord["delete"].push(chunkId);
         console.log(`Delete chunk ${chunkId}`);
       }
     },
+
+    clearChangeRecord: (state, action) => {
+      state.changeRecord = {
+        update: [],
+        delete: [],
+      }
+    }, 
 
     moveUpChunk: (state, action) => {
       const chunkId = action.payload;
@@ -144,6 +159,7 @@ export const resumeSlice = createSlice({
         ];
       }
     },
+
     moveDownChunk: (state, action) => {
       const chunkId = action.payload;
       // find Object that contains chunkId
@@ -177,6 +193,7 @@ export const resumeSlice = createSlice({
         ];
       }
     },
+
     sidebarSwitch: (state) => {
       state.sidebarIsOpen = !state.sidebarIsOpen;
     },
@@ -188,6 +205,7 @@ export const {
   updateChunk,
   insertChunk,
   deleteChunk,
+  clearChangeRecord, 
   moveUpChunk,
   moveDownChunk,
   sidebarSwitch,

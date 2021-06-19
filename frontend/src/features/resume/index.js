@@ -1,32 +1,29 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+
 import ViewMode from "./ViewMode";
 import EditMode from "./EditMode";
 import { VIEW_MODE, EDIT_MODE } from "./config";
-import { initChunk } from "./resumeSlice";
-import { getPreparation } from "./axios";
+import { initChunk, insertChunk } from "./resumeSlice";
+import { getPreparation } from "./api";
 
-function Resume() {
+function Resume({loginState}) {
   const [mode, setMode] = useState("view");
+
   const dispatch = useDispatch();
-  let user_id = "Dragon's UserId"; // index.js跟ViewMode.js的user_id要一起改
   useEffect(() => {
     // remote version
-    getPreparation(user_id) // get the all chunk of the user, we may attach cookies in this request
-      .then((res) => dispatch(initChunk(res)))
+    getPreparation()
+      .then((chunkList) => {
+        dispatch(initChunk(chunkList))
+        if(chunkList.length === 0){
+          dispatch(insertChunk(0, "type1", "up"))
+        }
+      })
       .catch((err) => {
         console.log(err);
       });
 
-    // local version
-    // const sampleInit = [{
-    //     id: (new Date()).getTime(),
-    //     type: "type1",
-    //     value: {
-    //         text: "word"
-    //     }
-    // }]
-    // dispatch(initChunk(sampleInit))
   }, []);
 
   if (mode === VIEW_MODE) return <ViewMode />;

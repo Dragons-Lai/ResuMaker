@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
 import "antd/dist/antd.css";
@@ -12,30 +11,7 @@ import Resume from "./features/resume";
 import AuthWrapper from "./features/resume/AuthWrapper";
 
 
-const AuthRoute = ({loginState}) => {
-  console.log("loginState", loginState)
-  if (loginState === false)
-    return <Redirect to="/" />;
-  else
-    return (
-      <Route path="/resume">
-        <Resume />
-      </Route>);
-};
-
-// 把未登入者導到登入頁
 function App() {
-  const [loginState, setLoginState] = useState(null);
-
-  axios.get("/isLogin")
-  .then((res)=>{
-    const isLogin = res.data
-    setLoginState(isLogin)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
-
   return (
     <Router>
       <Switch>  
@@ -48,16 +24,17 @@ function App() {
           }}>login</button>
           <button onClick={ () => register("Fish", "Yun", "test")}>register</button>
           <button onClick={ () => {
-            axios.post("/saveOrder", { ChunkList: [1, 2] })
+            axios.get("/getOrder", { ChunkList: [1, 2] })
             .then((res)=>{console.log("res", res)})
             .catch((err) => console.log("err", err))
-          }}>saveOrder</button>
-          <button onClick={ () => {} }>setLoginState</button>
+          }}>getOrder</button>
           <button onClick={ () => {logout()} }>logout</button>
           </Route>
         <Route path="/resume">
-          <Resume />
-        </Route>
+        <AuthWrapper>
+          <Resume/>
+        </AuthWrapper>
+        </Route>);
       </Switch>
     </Router>
   );
