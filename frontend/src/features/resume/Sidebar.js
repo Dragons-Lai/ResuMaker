@@ -1,19 +1,44 @@
 import { useSelector, useDispatch } from "react-redux";
-import { sidebarSwitch } from "./resumeSlice";
-import { selectSidebarStatus } from "./resumeSlice";
-import { Button } from "antd";
+import {
+  insertChunk,
+  sidebarSwitch,
+  selectCurrentChunkId,
+} from "./resumeSlice";
+import { Button, Row, Card } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 
-export default function Sidebar() {
-  const openSidebar = useSelector(selectSidebarStatus);
-  const dispatch = useDispatch();
+const { Meta } = Card;
 
-  return openSidebar ? (
-    <div className="sidebar">
-      <Button
-        icon={<CloseOutlined />}
-        onClick={() => dispatch(sidebarSwitch())}
-      />
+export default function Sidebar() {
+  const dispatch = useDispatch();
+  const currentChunkId = useSelector(selectCurrentChunkId);
+
+  return (
+    <div className="sidebar-open">
+      <Row>
+        <Button
+          type="text"
+          icon={<CloseOutlined />}
+          onClick={() => dispatch(sidebarSwitch())}
+          block
+        />
+      </Row>
+      <Row>
+        <Card
+          hoverable
+          cover={
+            <img
+              alt="type-1"
+              src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+            />
+          }
+          onClick={() => dispatch(insertChunk(currentChunkId, "type1", "down"))}
+          className="sidebarChunkType1"
+          style={{ width: 180, margin: 10 }}
+        >
+          <Meta description="Chunk Type1" />
+        </Card>
+      </Row>
     </div>
-  ) : null;
+  );
 }

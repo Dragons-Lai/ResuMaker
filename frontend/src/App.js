@@ -3,7 +3,8 @@ import Login from "./features/login";
 import Resume from "./features/resume";
 import "./App.css";
 import "antd/dist/antd.css";
-import "./styles/_chunk.scss";
+import "./styles/scss/_chunk.scss";
+import "./styles/scss/_header.scss";
 
 function App() {
   return (
