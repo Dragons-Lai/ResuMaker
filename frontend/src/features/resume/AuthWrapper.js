@@ -1,14 +1,12 @@
-import  { Redirect } from 'react-router-dom'
-import Cookies from 'universal-cookie';
+import { Redirect } from "react-router-dom";
+import Cookies from "universal-cookie";
 
-export default function AuthWrapper({children}){
+export default function AuthWrapper({ children }) {
   const cookies = new Cookies();
-  const isLogin = cookies.get("isLogin")
+  const isLogin = cookies.get("isLogin");
 
-  console.log("tset", isLogin)
+  console.log("tset", isLogin);
 
-  if(!isLogin)
-    return <Redirect to='/'/>
-  else
-    return children
+  if (!isLogin) return <Redirect to="/" />;
+  else return children;
 }

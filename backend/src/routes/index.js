@@ -1,8 +1,8 @@
-import { Router } from 'express';
-import scoreCardRouter from './scoreCard';
+// import { Router } from "express";
+// import scoreCardRouter from "./scoreCard";
 
-const router = Router();
+// const router = Router();
 
-router.use('/', scoreCardRouter);
+// router.use("/", scoreCardRouter);
 
-export default router;
+// export default router;

@@ -7,7 +7,7 @@ import { VIEW_MODE, EDIT_MODE } from "./config";
 import { initChunk, insertChunk } from "./resumeSlice";
 import { getPreparation } from "./api";
 
-function Resume({loginState}) {
+function Resume() {
   const [mode, setMode] = useState("view");
 
   const dispatch = useDispatch();
@@ -15,15 +15,14 @@ function Resume({loginState}) {
     // remote version
     getPreparation()
       .then((chunkList) => {
-        dispatch(initChunk(chunkList))
-        if(chunkList.length === 0){
-          dispatch(insertChunk(0, "type1", "up"))
+        dispatch(initChunk(chunkList));
+        if (chunkList.length === 0) {
+          dispatch(insertChunk(0, "type1", "up"));
         }
       })
       .catch((err) => {
         console.log(err);
       });
-
   }, []);
 
   if (mode === VIEW_MODE) return <ViewMode />;

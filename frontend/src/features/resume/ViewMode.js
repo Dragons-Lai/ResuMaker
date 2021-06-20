@@ -1,5 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
-import { selectChunkIdList, selectChangeRecord, clearChangeRecord } from "./resumeSlice";
+import {
+  selectChunkIdList,
+  selectChangeRecord,
+  clearChangeRecord,
+} from "./resumeSlice";
 import Chunk from "./Chunk";
 import Sidebar from "./Sidebar";
 import { Layout } from "antd";
@@ -20,14 +24,18 @@ export default function ViewMode() {
           {chunkIdList.map((chunkId) => (
             <Chunk key={chunkId} id={chunkId} />
           ))}
-          <button onClick={() => {
-            saveChunk(chunkIdList, changeRecord).then(()=>dispatch(clearChangeRecord()));
-          }}>
+          <button
+            onClick={() => {
+              saveChunk(chunkIdList, changeRecord).then(() =>
+                dispatch(clearChangeRecord())
+              );
+            }}
+          >
             save
           </button>
-          <button onClick={()=>console.log("changeRecord", changeRecord)}>
+          {/* <button onClick={() => console.log("changeRecord", changeRecord)}>
             observe
-          </button>
+          </button> */}
         </div>
       </Content>
       <Sider>
