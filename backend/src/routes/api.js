@@ -8,7 +8,7 @@ const router = Router();
 router.get("/getOrder", async function (req, res) {
   try {
     const { user_id } = req.query;
-    console.log("getOrder___user_id: ", user_id);
+    // console.log("getOrder___user_id: ", user_id);
     let query = await Order.findOne({ user_id: user_id });
     if (query !== null) {
       let ChunkIdList = query.order.split("->");
@@ -26,7 +26,7 @@ router.get("/getOrder", async function (req, res) {
 router.get("/getChunk", async function (req, res) {
   try {
     const { user_id } = req.query;
-    console.log("getChunk___user_id: ", user_id);
+    // console.log("getChunk___user_id: ", user_id);
     let query = await Chunk.find({ user_id: user_id });
     if (query !== []) {
       res.send({ ChunkList: query });
