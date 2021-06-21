@@ -1,0 +1,21 @@
+.homepage {
+  position: relative;
+}
+
+.homepage .button-group .button {
+  position: relative;
+  margin: 10px;
+  width: 8vw;
+  height: 7vh;
+  top: 10px;
+  right: 20px;
+  float: right;
+}
+
+.homepage h1 {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+  font-size: 3em;
+}

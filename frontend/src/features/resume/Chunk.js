@@ -18,7 +18,7 @@ import {
   BarsOutlined,
 } from "@ant-design/icons";
 
-const { TextArea } = Input;
+// const { TextArea } = Input;
 
 export default function Chunk({ id }) {
   const chunk = useSelector(selectChunkById(id));
@@ -43,24 +43,12 @@ export default function Chunk({ id }) {
             >
               New
             </Button>
-            <Button
-              icon={<DeleteOutlined />}
-              onClick={() => dispatch(deleteChunk(id))}
-            >
+            <Button icon={<DeleteOutlined />} onClick={() => dispatch(deleteChunk(id))}>
               Delete
             </Button>
-            <Button
-              icon={<ArrowUpOutlined />}
-              onClick={() => dispatch(moveUpChunk(id))}
-            />
-            <Button
-              icon={<ArrowDownOutlined />}
-              onClick={() => dispatch(moveDownChunk(id))}
-            />
-            <Button
-              icon={<BarsOutlined />}
-              onClick={() => dispatch(sidebarSwitch())}
-            />
+            <Button icon={<ArrowUpOutlined />} onClick={() => dispatch(moveUpChunk(id))} />
+            <Button icon={<ArrowDownOutlined />} onClick={() => dispatch(moveDownChunk(id))} />
+            <Button icon={<BarsOutlined />} onClick={() => dispatch(sidebarSwitch())} />
           </Divider>
         </div>
       );

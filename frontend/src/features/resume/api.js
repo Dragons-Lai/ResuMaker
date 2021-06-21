@@ -9,6 +9,8 @@ export async function getPreparation() {
     data: { ChunkList },
   } = await axios.get("/getChunk");
 
+  // console.log("getPreparation___ChunkIdList: ", ChunkIdList);
+  // console.log("getPreparation___ChunkList: ", ChunkList);
   let ChunkList_sorted = [];
   let isInitial = (ChunkIdList.length === 0) & (ChunkList.length === 0);
   if (!isInitial) {

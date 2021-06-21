@@ -10,10 +10,7 @@ export default function Sidebar() {
 
   return openSidebar ? (
     <div className="sidebar">
-      <Button
-        icon={<CloseOutlined />}
-        onClick={() => dispatch(sidebarSwitch())}
-      />
+      <Button icon={<CloseOutlined />} onClick={() => dispatch(sidebarSwitch())} />
     </div>
   ) : null;
 }

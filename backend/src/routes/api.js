@@ -33,7 +33,6 @@ function isAuthenticated(req, res, next) {
 router.get("/getOrder", isAuthenticated, async function (req, res) {
   try {
     const user_id = req.user._id;
-
     // console.log("getOrder___user_id: ", user_id);
     let query = await Order.findOne({ user_id });
 
@@ -70,8 +69,7 @@ router.get("/getChunk", isAuthenticated, async function (req, res) {
 router.post("/saveOrder", isAuthenticated, async function (req, res) {
   try {
     const user_id = req.user._id;
-    const { chunk_order } = req.body;
-
+    const chunk_order = req.body.ChunkIdList;
     const condition = { user_id };
     const update_info = { user_id, order: chunk_order };
     const result = await Order.findOneAndUpdate(condition, update_info, {

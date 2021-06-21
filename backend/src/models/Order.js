@@ -8,7 +8,7 @@ const OrderSchema = new Schema({
     required: [true, "user_id field is required."],
   },
   order: {
-    type: String,
+    type: Array,
     required: [true, "order field is required."],
   },
 });

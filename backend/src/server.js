@@ -7,7 +7,6 @@ import dotenv from "dotenv-defaults";
 import passport from "passport";
 import flash from "flash";
 
-import bcrypt from "bcrypt-nodejs";
 import mongo from "./mongo.js";
 import routes from "./routes/api.js";
 

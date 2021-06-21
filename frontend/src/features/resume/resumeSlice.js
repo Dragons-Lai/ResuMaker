@@ -25,9 +25,7 @@ export const resumeSlice = createSlice({
       reducer(state, action) {
         const { chunkId, data, typeOfData } = action.payload;
 
-        const targetIdx = state.chunkList.findIndex(
-          (chunk) => chunk.id === chunkId
-        );
+        const targetIdx = state.chunkList.findIndex((chunk) => chunk.id === chunkId);
         switch (state.chunkList[targetIdx].type) {
           case "type1":
             state.chunkList[targetIdx].value.text = data;
@@ -72,9 +70,7 @@ export const resumeSlice = createSlice({
           value: DEFAULT_CHUNK_VALUE[type],
         };
 
-        var insertIndex = state.chunkList.findIndex(
-          (chunk) => chunk.id === chunkId
-        );
+        var insertIndex = state.chunkList.findIndex((chunk) => chunk.id === chunkId);
         if (position === "down") insertIndex += 1;
 
         state.chunkList = [
@@ -98,9 +94,7 @@ export const resumeSlice = createSlice({
       if (state.chunkList.length <= 1) return;
 
       state.chunkList = state.chunkList.filter((chunk) => chunk.id !== chunkId);
-      if (
-        state.changeRecord["delete"].find((id) => id === chunkId) === undefined
-      ) {
+      if (state.changeRecord["delete"].find((id) => id === chunkId) === undefined) {
         state.changeRecord["delete"].push(chunkId);
         console.log(`Delete chunk ${chunkId}`);
       }
@@ -116,9 +110,7 @@ export const resumeSlice = createSlice({
     moveUpChunk: (state, action) => {
       const chunkId = action.payload;
       // find Object that contains chunkId
-      const chunkIndex = state.chunkList.findIndex(
-        (element) => element.id === chunkId
-      );
+      const chunkIndex = state.chunkList.findIndex((element) => element.id === chunkId);
       if (state.chunkList.length > 1 && chunkIndex !== 0) {
         /**
          * Move up the object by one index
@@ -136,10 +128,7 @@ export const resumeSlice = createSlice({
         }
 
         // tail of the chunkList
-        const chunkListTail = state.chunkList.slice(
-          chunkIndex + 1,
-          state.chunkList.length
-        );
+        const chunkListTail = state.chunkList.slice(chunkIndex + 1, state.chunkList.length);
 
         state.chunkList = [
           ...chunkListHead,
@@ -153,13 +142,8 @@ export const resumeSlice = createSlice({
     moveDownChunk: (state, action) => {
       const chunkId = action.payload;
       // find Object that contains chunkId
-      const chunkIndex = state.chunkList.findIndex(
-        (element) => element.id === chunkId
-      );
-      if (
-        state.chunkList.length > 1 &&
-        chunkIndex !== state.chunkList.length - 1
-      ) {
+      const chunkIndex = state.chunkList.findIndex((element) => element.id === chunkId);
+      if (state.chunkList.length > 1 && chunkIndex !== state.chunkList.length - 1) {
         /**
          * Move down the object by one index
          *
@@ -170,10 +154,7 @@ export const resumeSlice = createSlice({
         const chunkListHead = state.chunkList.slice(0, chunkIndex);
 
         // tail of the chunkList
-        const chunkListTail = state.chunkList.slice(
-          chunkIndex + 2,
-          state.chunkList.length
-        );
+        const chunkListTail = state.chunkList.slice(chunkIndex + 2, state.chunkList.length);
 
         state.chunkList = [
           ...chunkListHead,
@@ -204,8 +185,7 @@ export const selectChunkById =
   (chunkId) =>
   ({ resume }) =>
     resume.chunkList.find((chunk) => chunk.id === chunkId);
-export const selectChunkIdList = ({ resume }) =>
-  resume.chunkList.map((chunk) => chunk.id);
+export const selectChunkIdList = ({ resume }) => resume.chunkList.map((chunk) => chunk.id);
 export const selectChangeRecord = ({ resume }) => resume.changeRecord;
 export const selectSidebarStatus = ({ resume }) => resume.sidebarIsOpen;
 

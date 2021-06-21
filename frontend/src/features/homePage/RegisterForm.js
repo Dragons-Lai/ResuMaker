@@ -1,25 +1,42 @@
 import React, { useState } from "react"; //rfce: react function component export
-import "../../styles/LoginForm.css";
-import { login } from "./api";
+import "../../styles/RegisterForm.css";
+import { register } from "./api";
 
-function LoginForm() {
+function RegisterForm() {
   const [error, setError] = useState("");
-  const [details, setDetails] = useState({ account: "", password: "" });
+  const [details, setDetails] = useState({
+    userName: "",
+    account: "",
+    password: "",
+  });
   const submitHandler = (e) => {
     e.preventDefault();
-    login(details.account, details.password)
+    register(details.userName, details.account, details.password)
       .then((res) => {
-        if (res === "Login.") window.location = "/resume";
+        console.log(res);
+        if (res === "Successfully registered. ") {
+          window.location = "/";
+        } else setError(res);
       })
       .catch((err) => {
-        setError("Details do not match!");
+        setError("Something went wrong!");
       });
   };
   return (
-    <form className="login" onSubmit={submitHandler}>
+    <form className="register" onSubmit={submitHandler}>
       <div className="form-inner">
-        <h2>Login</h2>
+        <h2>Register</h2>
         {error != "" ? <div className="error">{error}</div> : ""}
+        <div className="form-group">
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            onChange={(e) => setDetails({ ...details, userName: e.target.value })}
+            value={details.userName}
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="account">Account:</label>
           <input
@@ -40,19 +57,10 @@ function LoginForm() {
             value={details.password}
           />
         </div>
-        <div>
-          <input type="submit" value="LOGIN" />
-          <button
-            onClick={() => {
-              window.location = "/register";
-            }}
-          >
-            register
-          </button>
-        </div>
+        <input type="submit" value="REGISTER" />
       </div>
     </form>
   );
 }
 
-export default LoginForm;
+export default RegisterForm;
