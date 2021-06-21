@@ -10,6 +10,7 @@ const initialState = {
     delete: [],
   },
   sidebarIsOpen: false,
+  currentChunkId: 0,
 };
 
 export const resumeSlice = createSlice({
@@ -29,8 +30,10 @@ export const resumeSlice = createSlice({
         switch (state.chunkList[targetIdx].type) {
           case "type1":
             state.chunkList[targetIdx].value.text = data;
+            break;
           // case "type2":
           //   state.chunkList[targetIdx].value.text = data;
+          //   break;
           // case "type3":
           //   if (typeOfData === TITLE) {
           //     state.chunkList[targetIdx].value.title = data;
@@ -41,6 +44,7 @@ export const resumeSlice = createSlice({
           //   } else if (typeOfData === DESCRIPTION) {
           //     state.chunkList[targetIdx].value.description = data;
           //   }
+          //   break;
           default:
             const targetIdx2 = state.changeRecord["update"].findIndex(
               (chunk) => chunk.id === chunkId
@@ -164,9 +168,14 @@ export const resumeSlice = createSlice({
         ];
       }
     },
-
-    sidebarSwitch: (state) => {
-      state.sidebarIsOpen = !state.sidebarIsOpen;
+    sidebarSwitch: (state, action) => {
+      const chunkId = action.payload;
+      // state.currentChunkId = chunkId;
+      if (typeof chunkId === "undefined") {
+        state.sidebarIsOpen = !state.sidebarIsOpen;
+      } else {
+        state.sidebarIsOpen = true;
+      }
     },
   },
 });
@@ -188,5 +197,5 @@ export const selectChunkById =
 export const selectChunkIdList = ({ resume }) => resume.chunkList.map((chunk) => chunk.id);
 export const selectChangeRecord = ({ resume }) => resume.changeRecord;
 export const selectSidebarStatus = ({ resume }) => resume.sidebarIsOpen;
-
+export const selectCurrentChunkId = ({ resume }) => resume.currentChunkId;
 export default resumeSlice.reducer;

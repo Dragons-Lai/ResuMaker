@@ -1,12 +1,6 @@
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  insertChunk,
-  deleteChunk,
-  updateChunk,
-  moveUpChunk,
-  moveDownChunk,
-  sidebarSwitch,
-} from "./resumeSlice";
+import { deleteChunk, updateChunk, moveUpChunk, moveDownChunk, sidebarSwitch } from "./resumeSlice";
 import { selectChunkById } from "./resumeSlice";
 // import { TITLE, DURATION, COMPANY, DESCRIPTION } from "./constants";
 import { Button, Input, Divider } from "antd";
@@ -15,12 +9,13 @@ import {
   ArrowDownOutlined,
   PlusOutlined,
   DeleteOutlined,
-  BarsOutlined,
 } from "@ant-design/icons";
 
 // const { TextArea } = Input;
 
 export default function Chunk({ id }) {
+  const [isEditingChunk, setIsEditingChunk] = useState(true);
+
   const chunk = useSelector(selectChunkById(id));
   const dispatch = useDispatch();
 
@@ -28,27 +23,47 @@ export default function Chunk({ id }) {
     case "type1":
       return (
         <div className="chunk chunk-type1">
-          <p>{chunk.value.text}</p>
-          <Input
-            type="text"
-            onChange={(event) => dispatch(updateChunk(id, event.target.value))}
-            allowClear
-            placeholder="Text"
-            bordered={false}
-          />
+          {isEditingChunk ? (
+            <p onClick={() => setIsEditingChunk(!isEditingChunk)}>{chunk.value.text}</p>
+          ) : (
+            <Input
+              type="text"
+              onChange={(event) => dispatch(updateChunk(id, event.target.value))}
+              onBlur={() => setIsEditingChunk(!isEditingChunk)}
+              value={chunk.value.text}
+              // allowClear
+              bordered={false}
+            />
+          )}
           <Divider className="chunk-btn-group">
             <Button
+              value="small"
+              type="text"
               icon={<PlusOutlined />}
-              onClick={() => dispatch(insertChunk(id, "type1", "down"))}
+              onClick={() => dispatch(sidebarSwitch(id))}
             >
               New
             </Button>
-            <Button icon={<DeleteOutlined />} onClick={() => dispatch(deleteChunk(id))}>
+            <Button
+              value="small"
+              type="text"
+              icon={<DeleteOutlined />}
+              onClick={() => dispatch(deleteChunk(id))}
+            >
               Delete
             </Button>
-            <Button icon={<ArrowUpOutlined />} onClick={() => dispatch(moveUpChunk(id))} />
-            <Button icon={<ArrowDownOutlined />} onClick={() => dispatch(moveDownChunk(id))} />
-            <Button icon={<BarsOutlined />} onClick={() => dispatch(sidebarSwitch())} />
+            <Button
+              value="small"
+              type="text"
+              icon={<ArrowUpOutlined />}
+              onClick={() => dispatch(moveUpChunk(id))}
+            />
+            <Button
+              value="small"
+              type="text"
+              icon={<ArrowDownOutlined />}
+              onClick={() => dispatch(moveDownChunk(id))}
+            />
           </Divider>
         </div>
       );

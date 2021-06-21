@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
 import "antd/dist/antd.css";
-import "./styles/_chunk.scss";
+import "./styles/scss/_chunk.scss";
+import "./styles/scss/_header.scss";
 
 import { Loginform, Registerform, Homepage } from "./features/homepage";
 import Resume from "./features/resume";
