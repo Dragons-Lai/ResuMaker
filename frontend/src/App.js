@@ -5,7 +5,7 @@ import "antd/dist/antd.css";
 import "./styles/scss/_chunk.scss";
 import "./styles/scss/_header.scss";
 
-import { Loginform, Registerform, Homepage } from "./features/homepage";
+import { Loginform, Registerform, Homepage } from "./features/homePage";
 import Resume from "./features/resume";
 import AuthWrapper from "./features/resume/AuthWrapper";
 

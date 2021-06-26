@@ -3,12 +3,14 @@ import HomePageImage from "./homepage.jpg";
 import { Button } from "antd";
 import { Row, Col } from "react-bootstrap";
 
+
 const BackGroundStyle = {
   width: "100vw",
   height: "100vh",
   backgroundImage: `url(${HomePageImage})`,
   backgroundSize: "cover",
 };
+
 
 function HomePage() {
   return (

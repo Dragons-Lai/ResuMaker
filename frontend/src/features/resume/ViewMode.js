@@ -1,15 +1,18 @@
 import { useSelector, useDispatch } from "react-redux";
 import { selectSidebarStatus } from "./resumeSlice";
-import { selectChunkIdList, selectChangeRecord, clearChangeRecord } from "./resumeSlice";
-import Chunk from "./Chunk";
-import Sidebar from "./Sidebar";
 import { Layout, Menu, Button } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
-import { saveChunk } from "./api";
 import "../../styles/ViewMode.css";
 import React from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import { logout } from "../homepage/api";
+
+
+import { selectChunkIdList, selectChangeRecord, clearChangeRecord } from "./resumeSlice";
+import Chunk from "./Chunk";
+import Sidebar from "./Sidebar";
+import { saveChunk } from "./api";
+import { logout } from "../homePage/api";
+
 
 const { Header, Sider, Content } = Layout;
 
