@@ -1,0 +1,66 @@
+.chunk {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: left;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.icon-pair-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+}
+
+.icon-pair-list {
+  width: 100%;
+  /* background-color: rgb(209, 209, 209); */
+  display: flex;
+  flex-direction: row;
+}
+
+.hover-button-menu {
+  background-color: rgb(212, 211, 211);
+  display: none;
+}
+
+.icon-pair {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 3em;
+}
+
+.icon-pair:hover + .hover-button-menu,
+.hover-button-menu:hover {
+  display: inline-block;
+}
+
+.icon-selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+
+.icon-selection:hover {
+  background-color: rgb(209, 209, 209);
+  /* padding-top: 12px; */
+  padding-bottom: 0;
+}
+
+.icon-selection > p {
+  margin: 0;
+}
+
+input,
+input:focus {
+  border: 0;
+  outline: none;
+}

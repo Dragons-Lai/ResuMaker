@@ -7,7 +7,6 @@
 
 .register input {
   appearance: none;
-  background: none;
   border: none;
   outline: none;
 }
@@ -27,7 +26,7 @@
 
 .register .form-inner .form-group label {
   display: block;
-  color: #666;
+  color: rgb(53, 53, 53);
   font-size: 12px;
   margin-bottom: 5px;
   transition: 0.4s;
@@ -37,7 +36,7 @@
   display: block;
   width: 100%;
   padding: 10px 15px;
-  background-color: #f8f8f8;
+  background-color: rgb(187, 221, 250);
   border-radius: 8px;
   transition: 0.4s;
 }
@@ -46,5 +45,6 @@ form .form-inner input[type="submit"] {
   display: inline-block;
   padding: 10px 15px;
   border-radius: 8px;
-  color: #666;
+  color: rgb(53, 53, 53);
+  background: rgb(146, 195, 241);
 }

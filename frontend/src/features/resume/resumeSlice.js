@@ -28,6 +28,21 @@ export const resumeSlice = createSlice({
 
         const targetIdx = state.chunkList.findIndex((chunk) => chunk.id === chunkId);
         switch (state.chunkList[targetIdx].type) {
+          case "infoChunk_1":
+            switch (typeOfData) {
+              case ("title"):
+                state.chunkList[targetIdx].value.title = data;
+                break
+              case ("content"):
+                state.chunkList[targetIdx].value.content = data;
+                break
+              case ("icon_pair"):
+                console.log("TWWWWWWWWWWWWWWWWWWWWW")
+                state.chunkList[targetIdx].value.icon_pair = data;
+              default:
+                break
+            }
+            break
           case "type1":
             state.chunkList[targetIdx].value.text = data;
           // break;
@@ -192,8 +207,8 @@ export const {
 } = resumeSlice.actions;
 export const selectChunkById =
   (chunkId) =>
-  ({ resume }) =>
-    resume.chunkList.find((chunk) => chunk.id === chunkId);
+    ({ resume }) =>
+      resume.chunkList.find((chunk) => chunk.id === chunkId);
 export const selectChunkIdList = ({ resume }) => resume.chunkList.map((chunk) => chunk.id);
 export const selectChangeRecord = ({ resume }) => resume.changeRecord;
 export const selectSidebarStatus = ({ resume }) => resume.sidebarIsOpen;

@@ -1,14 +1,15 @@
 import React, { useState } from "react"; //rfce: react function component export
 import "../../styles/RegisterForm.css";
+import { message } from "antd";
 import { register } from "./api";
 
 function RegisterForm() {
-  const [error, setError] = useState("");
   const [details, setDetails] = useState({
     userName: "",
     account: "",
     password: "",
   });
+
   const submitHandler = (e) => {
     e.preventDefault();
     register(details.userName, details.account, details.password)
@@ -16,17 +17,20 @@ function RegisterForm() {
         console.log(res);
         if (res === "Successfully registered. ") {
           window.location = "/";
-        } else setError(res);
+        } else {
+          message.error(res)
+        }
       })
       .catch((err) => {
-        setError("Something went wrong!");
+        console.log(err)
+        message.error("Something went wrong!")
       });
   };
+
   return (
     <form className="register" onSubmit={submitHandler}>
       <div className="form-inner">
         <h2>Register</h2>
-        {error != "" ? <div className="error">{error}</div> : ""}
         <div className="form-group">
           <label htmlFor="name">Name:</label>
           <input
