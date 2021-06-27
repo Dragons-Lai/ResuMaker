@@ -6,13 +6,11 @@ import "../../styles/ViewMode.css";
 import React from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
-
 import { selectChunkIdList, selectChangeRecord, clearChangeRecord } from "./resumeSlice";
 import Chunk from "./Chunk";
 import Sidebar from "./Sidebar";
 import { saveChunk } from "./api";
 import { logout } from "../homePage/api";
-
 
 const { Header, Sider, Content } = Layout;
 

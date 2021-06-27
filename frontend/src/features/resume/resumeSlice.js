@@ -30,7 +30,7 @@ export const resumeSlice = createSlice({
         switch (state.chunkList[targetIdx].type) {
           case "type1":
             state.chunkList[targetIdx].value.text = data;
-            break;
+          // break;
           // case "type2":
           //   state.chunkList[targetIdx].value.text = data;
           //   break;
@@ -170,7 +170,7 @@ export const resumeSlice = createSlice({
     },
     sidebarSwitch: (state, action) => {
       const chunkId = action.payload;
-      // state.currentChunkId = chunkId;
+      state.currentChunkId = chunkId;
       if (typeof chunkId === "undefined") {
         state.sidebarIsOpen = !state.sidebarIsOpen;
       } else {
