@@ -28,23 +28,38 @@ export const resumeSlice = createSlice({
 
         const targetIdx = state.chunkList.findIndex((chunk) => chunk.id === chunkId);
         switch (state.chunkList[targetIdx].type) {
+          case "infoChunk_1":
+            switch (typeOfData) {
+              case ("title"):
+                state.chunkList[targetIdx].value.title = data;
+                break
+              case ("content"):
+                state.chunkList[targetIdx].value.content = data;
+                break
+              case ("icon_pair"):
+                console.log("TWWWWWWWWWWWWWWWWWWWWW")
+                state.chunkList[targetIdx].value.icon_pair = data;
+              default:
+                break
+            }
+            break
           case "type1":
             state.chunkList[targetIdx].value.text = data;
             break;
-          // case "type2":
-          //   state.chunkList[targetIdx].value.text = data;
-          //   break;
-          // case "type3":
-          //   if (typeOfData === TITLE) {
-          //     state.chunkList[targetIdx].value.title = data;
-          //   } else if (typeOfData === DURATION) {
-          //     state.chunkList[targetIdx].value.duration = data;
-          //   } else if (typeOfData === COMPANY) {
-          //     state.chunkList[targetIdx].value.companyName = data;
-          //   } else if (typeOfData === DESCRIPTION) {
-          //     state.chunkList[targetIdx].value.description = data;
-          //   }
-          //   break;
+          case "type2":
+            state.chunkList[targetIdx].value.text = data;
+            break;
+          case "type3":
+            if (typeOfData === TITLE) {
+              state.chunkList[targetIdx].value.title = data;
+            } else if (typeOfData === DURATION) {
+              state.chunkList[targetIdx].value.duration = data;
+            } else if (typeOfData === COMPANY) {
+              state.chunkList[targetIdx].value.companyName = data;
+            } else if (typeOfData === DESCRIPTION) {
+              state.chunkList[targetIdx].value.description = data;
+            }
+            break;
           default:
             const targetIdx2 = state.changeRecord["update"].findIndex(
               (chunk) => chunk.id === chunkId
@@ -192,8 +207,8 @@ export const {
 } = resumeSlice.actions;
 export const selectChunkById =
   (chunkId) =>
-  ({ resume }) =>
-    resume.chunkList.find((chunk) => chunk.id === chunkId);
+    ({ resume }) =>
+      resume.chunkList.find((chunk) => chunk.id === chunkId);
 export const selectChunkIdList = ({ resume }) => resume.chunkList.map((chunk) => chunk.id);
 export const selectChangeRecord = ({ resume }) => resume.changeRecord;
 export const selectSidebarStatus = ({ resume }) => resume.sidebarIsOpen;

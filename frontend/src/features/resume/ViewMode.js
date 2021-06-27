@@ -6,7 +6,6 @@ import "../../styles/ViewMode.css";
 import React from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
-
 import { selectChunkIdList, selectChangeRecord, clearChangeRecord } from "./resumeSlice";
 import Chunk from "./Chunk";
 import Sidebar from "./Sidebar";
@@ -60,9 +59,9 @@ export default function ViewMode() {
       <Layout>
         <Content>
           <div className="container">
-            {chunkIdList.map((chunkId) => (
-              <Chunk key={chunkId} id={chunkId} />
-            ))}
+            {chunkIdList.map((chunkId) => {
+              return <Chunk key={chunkId} id={chunkId} />
+            })}
           </div>
         </Content>
         {React.createElement(openSidebar ? sider : nothing)}

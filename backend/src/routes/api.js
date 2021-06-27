@@ -149,7 +149,7 @@ passport.use(
       usernameField: "account",
       passwordField: "password",
       passReqToCallback: true,
-      successRedirect: "/resume",
+      // successRedirect: "/resume",
     },
     function (req, account, password, done) {
       User.findOne({ account: account }, function (err, user) {
@@ -207,7 +207,9 @@ router.post("/register", (req, res, next) => {
         const newUser = new User(userInfo);
         newUser.save();
         res.json({ message: "Successfully registered. " });
-      } else res.json({ message: "This account has been registered. " });
+      } else {
+        res.json({ message: "This account has been registered. " });
+      }
     }
   });
 });
