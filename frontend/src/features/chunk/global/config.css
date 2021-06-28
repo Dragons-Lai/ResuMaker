@@ -9,8 +9,8 @@
 
 .chunk-wrapper:hover .buttonMenu,
 .buttonMenu:hover {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background-color: gainsboro;
+  display: inline;
+  /* flex-direction: row; */
+  /* justify-content: center; */
+  /* background-color: gainsboro; */
 }

@@ -24,4 +24,10 @@ export const DEFAULT_CHUNK_VALUE = {
       },
     ],
   },
+  bpChunk_1: {
+    text: [
+      ["BulletPoint", "1. \n2. \n3. "],
+      ["BulletPoint", "1. \n2. \n3. "],
+    ],
+  },
 };

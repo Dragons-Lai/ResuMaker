@@ -14,7 +14,7 @@ export default function Sidebar() {
       <Row>
         <Button type="text" icon={<CloseOutlined />} onClick={() => dispatch(sidebarSwitch())} block />
       </Row>
-      <Row>
+      {/* <Row>
         <Card
           hoverable
           cover={<img alt="type-1" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
@@ -27,7 +27,7 @@ export default function Sidebar() {
         >
           <Meta description="Chunk Type1" />
         </Card>
-      </Row>
+      </Row> */}
       <Row>
         <Card
           hoverable
@@ -39,7 +39,21 @@ export default function Sidebar() {
           className="sidebarChunkType1"
           style={{ width: 180, margin: 10 }}
         >
-          <Meta description="Chunk Type2" />
+          <Meta description="infoChunk_1" />
+        </Card>
+      </Row>
+      <Row>
+        <Card
+          hoverable
+          cover={<img alt="type-2" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+          onClick={() => {
+            dispatch(insertChunk(currentChunkId, "bpChunk_1", "down"));
+            dispatch(sidebarSwitch());
+          }}
+          className="sidebarChunkType1"
+          style={{ width: 180, margin: 10 }}
+        >
+          <Meta description="bpChunk_1" />
         </Card>
       </Row>
     </div>

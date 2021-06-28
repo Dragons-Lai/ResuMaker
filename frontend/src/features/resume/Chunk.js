@@ -6,6 +6,7 @@ import { updateChunk } from "./resumeSlice";
 import { selectChunkById } from "./resumeSlice";
 // import { TITLE, DURATION, COMPANY, DESCRIPTION } from "./constants";
 import InfoChunk_1 from "../chunk/InfoChunk_1/InfoChunk_1";
+import BpChunk_1 from "../chunk/BpChunk_1/BpChunk_1";
 import ChunkWrapper from "../chunk/global/ChunkWrapper";
 
 const { TextArea } = Input;
@@ -39,6 +40,9 @@ export default function Chunk({ id }) {
           )}
         </div>
       );
+      break;
+    case "bpChunk_1":
+      chunk_content = <BpChunk_1 chunk={chunk} id={id}></BpChunk_1>;
       break;
     default:
       break;

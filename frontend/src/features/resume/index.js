@@ -19,9 +19,9 @@ function Resume() {
       .then((chunkList) => {
         dispatch(initChunk(chunkList));
         if (chunkList.length === 0) {
+          dispatch(insertChunk(0, "bpChunk_1", "up"));
           dispatch(insertChunk(0, "infoChunk_1", "up"));
-          dispatch(insertChunk(0, "type1", "up"));
-          // dispatch(insertChunk(1, "type2", "up"));
+          // dispatch(insertChunk(0, "type1", "up"));
           // dispatch(insertChunk(2, "type3", "up"));
         }
       })

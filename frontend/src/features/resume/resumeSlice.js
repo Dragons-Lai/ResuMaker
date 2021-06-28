@@ -24,12 +24,14 @@ export const resumeSlice = createSlice({
 
     updateChunk: {
       reducer(state, action) {
-        const { chunkId, data, typeOfData } = action.payload;
+        const { chunkId, data, metadata } = action.payload;
 
         const targetIdx = state.chunkList.findIndex((chunk) => chunk.id === chunkId);
         switch (state.chunkList[targetIdx].type) {
+          // case "type1":
+          //   state.chunkList[targetIdx].value.text = data;
           case "infoChunk_1":
-            switch (typeOfData) {
+            switch (metadata) {
               case "title":
                 state.chunkList[targetIdx].value.title = data;
                 break;
@@ -38,24 +40,41 @@ export const resumeSlice = createSlice({
                 break;
               case "icon_pair":
                 state.chunkList[targetIdx].value.icon_pair = data;
-              default:
                 break;
             }
-          // break
-          case "type1":
-            state.chunkList[targetIdx].value.text = data;
-          // break;
+          case "bpChunk_1":
+            switch (metadata[0]) {
+              case "title":
+                state.chunkList[targetIdx].value.text[metadata[1]][0] = data;
+                break;
+              case "content":
+                state.chunkList[targetIdx].value.text[metadata[1]][1] = data;
+                break;
+              case "insert":
+                state.chunkList[targetIdx].value.text = [
+                  ...state.chunkList[targetIdx].value.text.slice(0, metadata[1] + 1),
+                  ["BulletPoint", "1. \n2. \n3. "],
+                  ...state.chunkList[targetIdx].value.text.slice(metadata[1] + 1, state.chunkList[targetIdx].value.text.length),
+                ];
+                break;
+              case "delete":
+                state.chunkList[targetIdx].value.text = [
+                  ...state.chunkList[targetIdx].value.text.slice(0, metadata[1]),
+                  ...state.chunkList[targetIdx].value.text.slice(metadata[1] + 1, state.chunkList[targetIdx].value.text.length),
+                ];
+                break;
+            }
           // case "type2":
           //   state.chunkList[targetIdx].value.text = data;
           //   break;
           // case "type3":
-          //   if (typeOfData === TITLE) {
+          //   if (metadata === TITLE) {
           //     state.chunkList[targetIdx].value.title = data;
-          //   } else if (typeOfData === DURATION) {
+          //   } else if (metadata === DURATION) {
           //     state.chunkList[targetIdx].value.duration = data;
-          //   } else if (typeOfData === COMPANY) {
+          //   } else if (metadata === COMPANY) {
           //     state.chunkList[targetIdx].value.companyName = data;
-          //   } else if (typeOfData === DESCRIPTION) {
+          //   } else if (metadata === DESCRIPTION) {
           //     state.chunkList[targetIdx].value.description = data;
           //   }
           //   break;
@@ -65,14 +84,13 @@ export const resumeSlice = createSlice({
               state.changeRecord["update"].push(state.chunkList[targetIdx]);
             } else {
               state.changeRecord["update"].splice(targetIdx2, 1, state.chunkList[targetIdx]);
-              // state.changeRecord["update"][targetIdx2].value.text = data;
             }
           // console.log(`Update chunk ${chunkId}`);
         }
       },
-      prepare(chunkId, data, typeOfData) {
+      prepare(chunkId, data, metadata) {
         return {
-          payload: { chunkId, data, typeOfData },
+          payload: { chunkId, data, metadata },
         };
       },
     },
