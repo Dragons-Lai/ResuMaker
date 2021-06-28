@@ -1,6 +1,6 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { VIEW_MODE, DEFAULT_CHUNK_VALUE } from "./config";
-import { TITLE, DURATION, COMPANY, DESCRIPTION } from "./constants";
+// import { TITLE, DURATION, COMPANY, DESCRIPTION } from "./constants";
 
 const initialState = {
   mode: VIEW_MODE,
@@ -93,7 +93,7 @@ export const resumeSlice = createSlice({
         state.chunkList = [...state.chunkList.slice(0, insertIndex), newChunk, ...state.chunkList.slice(insertIndex, state.chunkList.length)];
 
         state.changeRecord["update"].push(newChunk);
-        console.log(`Add a new chunk ${newChunk.id}`);
+        // console.log(`Add a new chunk ${newChunk.id}`);
       },
       prepare(chunkId, type, position) {
         return {
@@ -109,7 +109,7 @@ export const resumeSlice = createSlice({
       state.chunkList = state.chunkList.filter((chunk) => chunk.id !== chunkId);
       if (state.changeRecord["delete"].find((id) => id === chunkId) === undefined) {
         state.changeRecord["delete"].push(chunkId);
-        console.log(`Delete chunk ${chunkId}`);
+        // console.log(`Delete chunk ${chunkId}`);
       }
     },
 

@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ArrowUpOutlined, ArrowDownOutlined, PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Button, Divider } from "antd";
 

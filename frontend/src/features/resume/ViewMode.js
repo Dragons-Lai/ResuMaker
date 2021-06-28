@@ -4,7 +4,7 @@ import { Layout, Menu, Button } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
 import "../../styles/ViewMode.css";
 import React from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { selectChunkIdList, selectChangeRecord, clearChangeRecord } from "./resumeSlice";
 import Chunk from "./Chunk";

@@ -1,7 +1,7 @@
 import "../../styles/HomePage.css";
 import HomePageImage from "./homepage.jpg";
 import { Button } from "antd";
-import { Row, Col } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 const BackGroundStyle = {
   width: "100vw",
