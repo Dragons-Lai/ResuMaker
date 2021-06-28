@@ -34,10 +34,10 @@ export default function ViewMode() {
     <Layout>
       <Header>
         <Menu mode="horizontal">
-          <Menu.Item key="login-link">
+          <Menu.Item key="thomepage">
             <Link to="/">Homepage</Link>
           </Menu.Item>
-          <Menu.Item>
+          <Menu.Item key="save">
             <Button
               type="primary"
               icon={<SaveOutlined />}
@@ -48,7 +48,7 @@ export default function ViewMode() {
               Save
             </Button>
           </Menu.Item>
-          <Menu.Item>
+          <Menu.Item key="logout">
             <Button type="primary" onClick={() => logout()}>
               Logout
             </Button>
@@ -59,7 +59,7 @@ export default function ViewMode() {
         <Content>
           <div className="container">
             {chunkIdList.map((chunkId) => {
-              return <Chunk key={chunkId} id={chunkId} />
+              return <Chunk key={chunkId} id={chunkId} />;
             })}
           </div>
         </Content>

@@ -2,7 +2,6 @@ import axios from "../../axios";
 
 // getChunk && getOrder
 export async function getPreparation() {
-
   const {
     data: { ChunkIdList },
   } = await axios.get("/getOrder");

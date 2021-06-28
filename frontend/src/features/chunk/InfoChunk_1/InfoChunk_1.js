@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Modal, Button, Tabs, Input, Row, Col, Divider, message } from "antd";
 
 import { updateChunk } from "../../resume/resumeSlice";
-import "./index.css";
+import "./InfoChunk_1.css";
 import "../global/config.css";
 import Icon, { iconKeyList } from "../global/Icon";
 import { EditFilled, PlusOutlined, DeleteFilled } from "@ant-design/icons";
@@ -68,7 +68,6 @@ export default ({ chunk, id }) => {
           }
           return (
             <div className="icon-pair-wrapper" key={i}>
-              {" "}
               {/*key不知道可不可以用 idx*/}
               <div className="icon-pair">
                 <Icon type={item.icon} style={Object.assign(haveLinkStyle, { padding: "0 5px" })}></Icon>
@@ -80,16 +79,15 @@ export default ({ chunk, id }) => {
                     setIconPair(newIconPair);
                   }}
                   size={item.text.length}
-                  bordered={false}
                   style={haveLinkStyle}
                 />
               </div>
               <Row className="hover-button-menu">
                 <Row>
                   <div style={{ padding: "0 3px" }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-return-right" viewBox="0 0 16 16">
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"
                       />
                     </svg>

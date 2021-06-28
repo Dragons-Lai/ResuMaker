@@ -67,7 +67,7 @@ export const resumeSlice = createSlice({
               state.changeRecord["update"].splice(targetIdx2, 1, state.chunkList[targetIdx]);
               // state.changeRecord["update"][targetIdx2].value.text = data;
             }
-            console.log(`Update chunk ${chunkId}`);
+          // console.log(`Update chunk ${chunkId}`);
         }
       },
       prepare(chunkId, data, typeOfData) {

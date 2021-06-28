@@ -22,23 +22,11 @@ function LoginForm() {
         {error != "" ? <div className="error">{error}</div> : ""}
         <div className="form-group">
           <label htmlFor="account">Account:</label>
-          <input
-            type="email"
-            name="account"
-            id="account"
-            onChange={(e) => setDetails({ ...details, account: e.target.value })}
-            value={details.account}
-          />
+          <input type="email" name="account" id="account" onChange={(e) => setDetails({ ...details, account: e.target.value })} value={details.account} />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            onChange={(e) => setDetails({ ...details, password: e.target.value })}
-            value={details.password}
-          />
+          <input type="password" name="password" id="password" onChange={(e) => setDetails({ ...details, password: e.target.value })} value={details.password} />
         </div>
         <div>
           <input type="submit" value="LOGIN" />

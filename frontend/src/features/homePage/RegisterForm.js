@@ -18,12 +18,12 @@ function RegisterForm() {
         if (res === "Successfully registered. ") {
           window.location = "/";
         } else {
-          message.error(res)
+          message.error(res);
         }
       })
       .catch((err) => {
-        console.log(err)
-        message.error("Something went wrong!")
+        console.log(err);
+        message.error("Something went wrong!");
       });
   };
 
@@ -33,33 +33,15 @@ function RegisterForm() {
         <h2>Register</h2>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            onChange={(e) => setDetails({ ...details, userName: e.target.value })}
-            value={details.userName}
-          />
+          <input type="text" name="name" id="name" onChange={(e) => setDetails({ ...details, userName: e.target.value })} value={details.userName} />
         </div>
         <div className="form-group">
           <label htmlFor="account">Account:</label>
-          <input
-            type="email"
-            name="account"
-            id="account"
-            onChange={(e) => setDetails({ ...details, account: e.target.value })}
-            value={details.account}
-          />
+          <input type="email" name="account" id="account" onChange={(e) => setDetails({ ...details, account: e.target.value })} value={details.account} />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            onChange={(e) => setDetails({ ...details, password: e.target.value })}
-            value={details.password}
-          />
+          <input type="password" name="password" id="password" onChange={(e) => setDetails({ ...details, password: e.target.value })} value={details.password} />
         </div>
         <input type="submit" value="REGISTER" />
       </div>

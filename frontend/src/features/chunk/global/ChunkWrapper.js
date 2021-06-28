@@ -4,7 +4,7 @@ import ButtonMenu from "./ButtonMenu";
 
 export default function ({ chunkId, children }) {
   return (
-    <div className="chunk-wrapper" contentEditable="true">
+    <div className="chunk-wrapper" contentEditable="true" suppressContentEditableWarning={true}>
       {/* <ButtonMenu chunkId={chunkId} position="up"></ButtonMenu> */}
       {children}
       <ButtonMenu chunkId={chunkId} position="down"></ButtonMenu>

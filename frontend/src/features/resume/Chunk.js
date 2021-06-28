@@ -5,7 +5,7 @@ import { Input } from "antd";
 import { updateChunk } from "./resumeSlice";
 import { selectChunkById } from "./resumeSlice";
 // import { TITLE, DURATION, COMPANY, DESCRIPTION } from "./constants";
-import InfoChunk_1 from "../chunk/InfoChunk_1";
+import InfoChunk_1 from "../chunk/InfoChunk_1/InfoChunk_1";
 import ChunkWrapper from "../chunk/global/ChunkWrapper";
 
 const { TextArea } = Input;

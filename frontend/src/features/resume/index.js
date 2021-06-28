@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { message } from "antd"
+import { message } from "antd";
 
 import ViewMode from "./ViewMode";
 import EditMode from "./EditMode";
@@ -26,15 +26,13 @@ function Resume() {
         }
       })
       .catch((err) => {
-        message.error("Server Error. Please refresh the page and wait. ", 0)
+        message.error("Server Error. Please refresh the page and wait. ", 0);
         console.log(err);
       });
   }, []);
 
-  if (mode === VIEW_MODE)
-    return <ViewMode />;
-  else if (mode === EDIT_MODE)
-    return <EditMode />;
+  if (mode === VIEW_MODE) return <ViewMode />;
+  else if (mode === EDIT_MODE) return <EditMode />;
 }
 
 export default Resume;

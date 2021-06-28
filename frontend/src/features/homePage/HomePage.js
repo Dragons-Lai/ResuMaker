@@ -14,20 +14,10 @@ function HomePage() {
   return (
     <div className="homepage" style={BackGroundStyle}>
       <Row className="button-group">
-        <Button
-          className="button"
-          onClick={() => (window.location = "/login")}
-          type="primary"
-          size="large"
-        >
+        <Button className="button" onClick={() => (window.location = "/login")} type="primary" size="large">
           LOGIN
         </Button>
-        <Button
-          className="button"
-          onClick={() => (window.location = "/register")}
-          type="primary"
-          size="large"
-        >
+        <Button className="button" onClick={() => (window.location = "/register")} type="primary" size="large">
           REGISTER
         </Button>
       </Row>
