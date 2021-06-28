@@ -30,19 +30,18 @@ export const resumeSlice = createSlice({
         switch (state.chunkList[targetIdx].type) {
           case "infoChunk_1":
             switch (typeOfData) {
-              case ("title"):
+              case "title":
                 state.chunkList[targetIdx].value.title = data;
-                break
-              case ("content"):
+                break;
+              case "content":
                 state.chunkList[targetIdx].value.content = data;
-                break
-              case ("icon_pair"):
-                console.log("TWWWWWWWWWWWWWWWWWWWWW")
+                break;
+              case "icon_pair":
                 state.chunkList[targetIdx].value.icon_pair = data;
               default:
-                break
+                break;
             }
-            break
+          // break
           case "type1":
             state.chunkList[targetIdx].value.text = data;
           // break;
@@ -61,13 +60,12 @@ export const resumeSlice = createSlice({
           //   }
           //   break;
           default:
-            const targetIdx2 = state.changeRecord["update"].findIndex(
-              (chunk) => chunk.id === chunkId
-            );
+            const targetIdx2 = state.changeRecord["update"].findIndex((chunk) => chunk.id === chunkId);
             if (targetIdx2 === -1) {
               state.changeRecord["update"].push(state.chunkList[targetIdx]);
             } else {
-              state.changeRecord["update"][targetIdx2].value.text = data;
+              state.changeRecord["update"].splice(targetIdx2, 1, state.chunkList[targetIdx]);
+              // state.changeRecord["update"][targetIdx2].value.text = data;
             }
             console.log(`Update chunk ${chunkId}`);
         }
@@ -92,11 +90,7 @@ export const resumeSlice = createSlice({
         var insertIndex = state.chunkList.findIndex((chunk) => chunk.id === chunkId);
         if (position === "down") insertIndex += 1;
 
-        state.chunkList = [
-          ...state.chunkList.slice(0, insertIndex),
-          newChunk,
-          ...state.chunkList.slice(insertIndex, state.chunkList.length),
-        ];
+        state.chunkList = [...state.chunkList.slice(0, insertIndex), newChunk, ...state.chunkList.slice(insertIndex, state.chunkList.length)];
 
         state.changeRecord["update"].push(newChunk);
         console.log(`Add a new chunk ${newChunk.id}`);
@@ -149,12 +143,7 @@ export const resumeSlice = createSlice({
         // tail of the chunkList
         const chunkListTail = state.chunkList.slice(chunkIndex + 1, state.chunkList.length);
 
-        state.chunkList = [
-          ...chunkListHead,
-          state.chunkList[chunkIndex],
-          state.chunkList[chunkIndex - 1],
-          ...chunkListTail,
-        ];
+        state.chunkList = [...chunkListHead, state.chunkList[chunkIndex], state.chunkList[chunkIndex - 1], ...chunkListTail];
       }
     },
 
@@ -175,12 +164,7 @@ export const resumeSlice = createSlice({
         // tail of the chunkList
         const chunkListTail = state.chunkList.slice(chunkIndex + 2, state.chunkList.length);
 
-        state.chunkList = [
-          ...chunkListHead,
-          state.chunkList[chunkIndex + 1],
-          state.chunkList[chunkIndex],
-          ...chunkListTail,
-        ];
+        state.chunkList = [...chunkListHead, state.chunkList[chunkIndex + 1], state.chunkList[chunkIndex], ...chunkListTail];
       }
     },
     sidebarSwitch: (state, action) => {
@@ -195,20 +179,11 @@ export const resumeSlice = createSlice({
   },
 });
 
-export const {
-  initChunk,
-  updateChunk,
-  insertChunk,
-  deleteChunk,
-  clearChangeRecord,
-  moveUpChunk,
-  moveDownChunk,
-  sidebarSwitch,
-} = resumeSlice.actions;
+export const { initChunk, updateChunk, insertChunk, deleteChunk, clearChangeRecord, moveUpChunk, moveDownChunk, sidebarSwitch } = resumeSlice.actions;
 export const selectChunkById =
   (chunkId) =>
-    ({ resume }) =>
-      resume.chunkList.find((chunk) => chunk.id === chunkId);
+  ({ resume }) =>
+    resume.chunkList.find((chunk) => chunk.id === chunkId);
 export const selectChunkIdList = ({ resume }) => resume.chunkList.map((chunk) => chunk.id);
 export const selectChangeRecord = ({ resume }) => resume.changeRecord;
 export const selectSidebarStatus = ({ resume }) => resume.sidebarIsOpen;

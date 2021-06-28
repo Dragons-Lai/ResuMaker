@@ -4,15 +4,15 @@ export const DEFAULT_CHUNK_VALUE = {
   type1: {
     text: "default",
   },
-  type2: {
-    text: "H2 Header"
-  },
-  type3: {
-    title: "Title",
-    companyName: "Company name",
-    duration: "Duration",
-    description: "Description",
-  },
+  // type2: {
+  //   text: "H2 Header"
+  // },
+  // type3: {
+  //   title: "Title",
+  //   companyName: "Company name",
+  //   duration: "Duration",
+  //   description: "Description",
+  // },
   infoChunk_1: {
     title: "Title",
     content: "Content",
@@ -20,8 +20,8 @@ export const DEFAULT_CHUNK_VALUE = {
       {
         icon: "PhoneFilled",
         text: "Your phone",
-        hyperLink: ""
-      }
-    ]
-  }
+        hyperLink: "",
+      },
+    ],
+  },
 };

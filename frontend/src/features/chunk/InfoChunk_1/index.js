@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Modal, Button, Tabs, Input, Row, Col, Divider, message } from 'antd';
+import { Modal, Button, Tabs, Input, Row, Col, Divider, message } from "antd";
 
 import { updateChunk } from "../../resume/resumeSlice";
-import "./index.css"
-import "../global/config.css"
-import Icon, { iconKeyList } from "../global/Icon"
+import "./index.css";
+import "../global/config.css";
+import Icon, { iconKeyList } from "../global/Icon";
 import { EditFilled, PlusOutlined, DeleteFilled } from "@ant-design/icons";
 
 const { TabPane } = Tabs;
@@ -14,24 +14,38 @@ const { TextArea } = Input;
 const DEFAULT_ICON_PAIR = {
   icon: "PhoneFilled",
   text: "Your phone",
-  hyperLink: ""
-}
+  hyperLink: "",
+};
 
-const BUTTON_MENU_STYLE
-  = {
-  fontSize: "1em"
-}
+const BUTTON_MENU_STYLE = {
+  fontSize: "1em",
+};
 
 export default ({ chunk, id }) => {
   const dispatch = useDispatch();
-  const [iconSelectIcon, setIconSelectIcon] = useState("")
-  const [hyperLink, setHyperLink] = useState("")
+  const [iconSelectIcon, setIconSelectIcon] = useState("");
+  const [hyperLink, setHyperLink] = useState("");
   const [visible, setVisible] = useState(false);
 
   const [selectIconPair, setSelectIconPair] = useState(null);
-  const [title, setTitle] = [chunk.value.title, (data) => { dispatch(updateChunk(id, data, "title")) }]
-  const [content, setContent] = [chunk.value.content, (data) => { dispatch(updateChunk(id, data, "content")) }]
-  const [iconPair, setIconPair] = [chunk.value.icon_pair, (data) => { dispatch(updateChunk(id, data, "icon_pair")) }]
+  const [title, setTitle] = [
+    chunk.value.title,
+    (data) => {
+      dispatch(updateChunk(id, data, "title"));
+    },
+  ];
+  const [content, setContent] = [
+    chunk.value.content,
+    (data) => {
+      dispatch(updateChunk(id, data, "content"));
+    },
+  ];
+  const [iconPair, setIconPair] = [
+    chunk.value.icon_pair,
+    (data) => {
+      dispatch(updateChunk(id, data, "icon_pair"));
+    },
+  ];
 
   // function onblur_handler(e) {
   //   if (e.relatedTarget) {
@@ -43,77 +57,86 @@ export default ({ chunk, id }) => {
 
   return (
     <div className="chunk" id={id}>
-      <TextArea autoSize bordered={false} className="title" value={title}
-        onChange={(e) => setTitle(e.target.value)} />
-      <TextArea autoSize bordered={false} className="content" value={content}
-        onChange={(e) => setContent(e.target.value)} />
+      <TextArea autoSize bordered={false} className="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+      <TextArea autoSize bordered={false} className="content" value={content} onChange={(e) => setContent(e.target.value)} />
 
       <Row className="icon-pair-list">
-        {
-          iconPair.map((item, i) => {
-            var haveLinkStyle = {}
-            if (item.hyperLink) {
-              haveLinkStyle["color"] = "rgb(146, 195, 241)";
-            }
-            return <div className="icon-pair-wrapper" key={i}> {/*key不知道可不可以用 idx*/}
+        {iconPair.map((item, i) => {
+          var haveLinkStyle = {};
+          if (item.hyperLink) {
+            haveLinkStyle["color"] = "rgb(146, 195, 241)";
+          }
+          return (
+            <div className="icon-pair-wrapper" key={i}>
+              {" "}
+              {/*key不知道可不可以用 idx*/}
               <div className="icon-pair">
                 <Icon type={item.icon} style={Object.assign(haveLinkStyle, { padding: "0 5px" })}></Icon>
                 <input
                   value={item.text}
                   onChange={(e) => {
-                    var newIconPair = iconPair.map((map_item) => ({ ...map_item }))
+                    var newIconPair = iconPair.map((map_item) => ({ ...map_item }));
                     newIconPair[i].text = e.target.value;
-                    setIconPair(newIconPair)
+                    setIconPair(newIconPair);
                   }}
                   size={item.text.length}
                   bordered={false}
-                  style={haveLinkStyle} />
+                  style={haveLinkStyle}
+                />
               </div>
               <Row className="hover-button-menu">
                 <Row>
                   <div style={{ padding: "0 3px" }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z" />
+                      <path
+                        fill-rule="evenodd"
+                        d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"
+                      />
                     </svg>
                   </div>
-                  <Button type="primary" onClick={() => {
-                    setSelectIconPair(i)
-                    setIconSelectIcon(item.icon)
-                    setHyperLink(item.hyperLink)
-                    setVisible(true)
-                  }}
-                    icon={<EditFilled style={BUTTON_MENU_STYLE} />}></Button>
+                  <Button
+                    type="primary"
+                    onClick={() => {
+                      setSelectIconPair(i);
+                      setIconSelectIcon(item.icon);
+                      setHyperLink(item.hyperLink);
+                      setVisible(true);
+                    }}
+                    icon={<EditFilled style={BUTTON_MENU_STYLE} />}
+                  ></Button>
 
-                  <Button type="primary" onClick={() => {
-                    var newIconPair = [
-                      ...iconPair.slice(0, i + 1),
-                      { ...DEFAULT_ICON_PAIR },
-                      ...iconPair.slice(i + 1, iconPair.length)
-                    ];
-                    setIconPair(newIconPair);
-                  }}
-                    icon={<PlusOutlined style={BUTTON_MENU_STYLE} />}></Button>
+                  <Button
+                    type="primary"
+                    onClick={() => {
+                      var newIconPair = [...iconPair.slice(0, i + 1), { ...DEFAULT_ICON_PAIR }, ...iconPair.slice(i + 1, iconPair.length)];
+                      setIconPair(newIconPair);
+                    }}
+                    icon={<PlusOutlined style={BUTTON_MENU_STYLE} />}
+                  ></Button>
 
-                  <Button type="primary" onClick={() => {
-                    if (iconPair.length > 1)
-                      setIconPair(iconPair.filter((filter_item, filter_i) => filter_i !== i));
-                    else
-                      message.error("Delete Error! You should at least have one icon pair. ")
-                  }}
+                  <Button
+                    type="primary"
+                    onClick={() => {
+                      if (iconPair.length > 1) setIconPair(iconPair.filter((filter_item, filter_i) => filter_i !== i));
+                      else message.error("Delete Error! You should at least have one icon pair. ");
+                    }}
                     icon={<DeleteFilled style={BUTTON_MENU_STYLE} />}
                   ></Button>
                 </Row>
               </Row>
             </div>
-          })
-        }
+          );
+        })}
       </Row>
       <Modal
         centered
         visible={visible}
         onOk={() => {
           var newIconPair = iconPair.map((map_item) => ({ ...map_item }));
-          newIconPair[selectIconPair] = Object.assign(newIconPair[selectIconPair], { icon: iconSelectIcon, hyperLink });
+          newIconPair[selectIconPair] = Object.assign(newIconPair[selectIconPair], {
+            icon: iconSelectIcon,
+            hyperLink,
+          });
           setIconPair(newIconPair);
           setVisible(false);
         }}
@@ -123,32 +146,35 @@ export default ({ chunk, id }) => {
         <Tabs type="card">
           <TabPane tab="Icon" key="icon">
             <Row justify="left" align="middle">
-              {
-                iconKeyList.map((iconType, i) => {
-                  var iconStyle = { fontSize: "22px" };
-                  var colStyle = {}
-                  if (iconSelectIcon !== null && iconSelectIcon === iconType) {
-                    colStyle["background-color"] = "rgb(146, 195, 241)";
-                  }
+              {iconKeyList.map((iconType, i) => {
+                var iconStyle = { fontSize: "22px" };
+                var colStyle = {};
+                if (iconSelectIcon !== null && iconSelectIcon === iconType) {
+                  colStyle["background-color"] = "rgb(146, 195, 241)";
+                }
 
-                  return (<Col span={4} className="icon-selection" key={i} style={colStyle} onClick={() => { setIconSelectIcon(iconType) }}>
+                return (
+                  <Col
+                    span={4}
+                    className="icon-selection"
+                    key={i}
+                    style={colStyle}
+                    onClick={() => {
+                      setIconSelectIcon(iconType);
+                    }}
+                  >
                     <Icon type={iconType} style={iconStyle}></Icon>
                     <p>{iconType}</p>
-                  </Col>)
-                })
-              }
+                  </Col>
+                );
+              })}
             </Row>
           </TabPane>
           <TabPane tab="Hyper Link" key="hyper-link">
-            <Input
-              value={hyperLink}
-              placeholder="Hyper Link"
-              allowClear
-              size="large"
-              onChange={(e) => setHyperLink(e.target.value)}
-            />
+            <Input value={hyperLink} placeholder="Hyper Link" allowClear size="large" onChange={(e) => setHyperLink(e.target.value)} />
           </TabPane>
         </Tabs>
       </Modal>
-    </div>)
-}
+    </div>
+  );
+};

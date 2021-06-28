@@ -149,7 +149,7 @@ passport.use(
       usernameField: "account",
       passwordField: "password",
       passReqToCallback: true,
-      // successRedirect: "/resume",
+      successRedirect: "/resume",
     },
     function (req, account, password, done) {
       User.findOne({ account: account }, function (err, user) {
