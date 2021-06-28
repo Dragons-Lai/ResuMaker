@@ -78,7 +78,7 @@ export default ({ chunk, id }) => {
                     newIconPair[i].text = e.target.value;
                     setIconPair(newIconPair);
                   }}
-                  size={item.text.length}
+                  size={item.text.length * 1.25}
                   style={haveLinkStyle}
                 />
               </div>

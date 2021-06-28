@@ -7,6 +7,7 @@
 
 .title {
   font-weight: bold;
+  font-size: 18px;
 }
 
 .icon-pair-wrapper {
@@ -30,6 +31,7 @@
   position: absolute;
   z-index: 1;
   top: -25px;
+  width: 7.5vw;
 }
 
 .icon-pair {

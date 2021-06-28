@@ -1,0 +1,11 @@
+.chunk {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: left;
+}
+
+.maintitle {
+  font-weight: bold;
+  font-size: 24px;
+}

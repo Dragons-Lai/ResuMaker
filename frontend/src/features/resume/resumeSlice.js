@@ -64,6 +64,8 @@ export const resumeSlice = createSlice({
                 ];
                 break;
             }
+          case "mtChunk_1":
+            state.chunkList[targetIdx].value.text = data;
           // case "type2":
           //   state.chunkList[targetIdx].value.text = data;
           //   break;

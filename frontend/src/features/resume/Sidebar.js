@@ -56,6 +56,20 @@ export default function Sidebar() {
           <Meta description="bpChunk_1" />
         </Card>
       </Row>
+      <Row>
+        <Card
+          hoverable
+          cover={<img alt="type-3" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+          onClick={() => {
+            dispatch(insertChunk(currentChunkId, "mtChunk_1", "down"));
+            dispatch(sidebarSwitch());
+          }}
+          className="sidebarChunkType1"
+          style={{ width: 180, margin: 10 }}
+        >
+          <Meta description="mtChunk_1" />
+        </Card>
+      </Row>
     </div>
   );
 }

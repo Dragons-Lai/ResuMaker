@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Modal, Button, Tabs, Input, Row, Col, Divider, message } from "antd";
+import { Button, Input, Row } from "antd";
 
 import { updateChunk } from "../../resume/resumeSlice";
 import "./BpChunk_1.css";

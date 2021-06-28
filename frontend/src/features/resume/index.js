@@ -7,7 +7,6 @@ import EditMode from "./EditMode";
 import { VIEW_MODE, EDIT_MODE } from "./config";
 import { initChunk, insertChunk } from "./resumeSlice";
 import { getPreparation } from "./api";
-import { duration } from "moment";
 
 function Resume() {
   const [mode, setMode] = useState("view");
@@ -20,8 +19,8 @@ function Resume() {
         dispatch(initChunk(chunkList));
         if (chunkList.length === 0) {
           dispatch(insertChunk(0, "bpChunk_1", "up"));
+          dispatch(insertChunk(0, "mtChunk_1", "up"));
           dispatch(insertChunk(0, "infoChunk_1", "up"));
-          // dispatch(insertChunk(0, "type1", "up"));
           // dispatch(insertChunk(2, "type3", "up"));
         }
       })
