@@ -10,6 +10,7 @@ import BpChunk_1 from "../chunk/BpChunk_1/BpChunk_1";
 import BpChunk_2 from "../chunk/BpChunk_2/BpChunk_2";
 import MtChunk_1 from "../chunk/MtChunk_1/MtChunk_1";
 import McChunk_1 from "../chunk/McChunk_1/McChunk_1";
+import LineChunk_1 from "../chunk/LineChunk_1/LineChunk_1";
 import ChunkWrapper from "../chunk/global/ChunkWrapper";
 
 const { TextArea } = Input;
@@ -56,6 +57,8 @@ export default function Chunk({ id }) {
     case "mcChunk_1":
       chunk_content = <McChunk_1 chunk={chunk} id={id}></McChunk_1>;
       break;
+    case "lineChunk_1":
+      chunk_content = <LineChunk_1 chunk={chunk} id={id}></LineChunk_1>;
     default:
       break;
   }

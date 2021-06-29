@@ -20,6 +20,7 @@ function Resume() {
         if (chunkList.length === 0) {
           dispatch(insertChunk(0, "bpChunk_1", "up"));
           dispatch(insertChunk(0, "bpChunk_2", "up"));
+          dispatch(insertChunk(0, "lineChunk_1", "up"));
           dispatch(insertChunk(0, "mtChunk_1", "up"));
           dispatch(insertChunk(0, "mcChunk_1", "up"));
           dispatch(insertChunk(0, "infoChunk_1", "up"));

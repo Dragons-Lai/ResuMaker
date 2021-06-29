@@ -39,7 +39,7 @@ export default function Sidebar() {
           className="sidebarChunkType1"
           style={{ width: 180, margin: 10 }}
         >
-          <Meta description="infoChunk_1" />
+          <Meta description="個人資訊" />
         </Card>
       </Row>
       <Row>
@@ -53,7 +53,7 @@ export default function Sidebar() {
           className="sidebarChunkType2"
           style={{ width: 180, margin: 10 }}
         >
-          <Meta description="bpChunk_1" />
+          <Meta description="列點式（樣式一）" />
         </Card>
       </Row>
       <Row>
@@ -67,7 +67,7 @@ export default function Sidebar() {
           className="sidebarChunkType3"
           style={{ width: 180, margin: 10 }}
         >
-          <Meta description="bpChunk_2" />
+          <Meta description="列點式（樣式二）" />
         </Card>
       </Row>
       <Row>
@@ -81,7 +81,7 @@ export default function Sidebar() {
           className="sidebarChunkType4"
           style={{ width: 180, margin: 10 }}
         >
-          <Meta description="mtChunk_1" />
+          <Meta description="標題" />
         </Card>
       </Row>
       <Row>
@@ -95,7 +95,21 @@ export default function Sidebar() {
           className="sidebarChunkType5"
           style={{ width: 180, margin: 10 }}
         >
-          <Meta description="mcChunk_1" />
+          <Meta description="任意文字" />
+        </Card>
+      </Row>
+      <Row>
+        <Card
+          hoverable
+          cover={<img alt="type-6" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+          onClick={() => {
+            dispatch(insertChunk(currentChunkId, "lineChunk_1", "down"));
+            dispatch(sidebarSwitch());
+          }}
+          className="sidebarChunkType6"
+          style={{ width: 180, margin: 10 }}
+        >
+          <Meta description="直線" />
         </Card>
       </Row>
     </div>

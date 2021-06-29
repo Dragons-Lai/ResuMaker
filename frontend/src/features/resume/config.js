@@ -43,4 +43,7 @@ export const DEFAULT_CHUNK_VALUE = {
   mcChunk_1: {
     text: "MainContent",
   },
+  lineChunk_1: {
+    text: null,
+  },
 };
