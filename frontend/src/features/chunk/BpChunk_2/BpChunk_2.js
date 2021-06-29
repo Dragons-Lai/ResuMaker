@@ -3,8 +3,9 @@ import { Button, Input, Row, Col } from "antd";
 
 import { updateChunk } from "../../resume/resumeSlice";
 import "./BpChunk_2.css";
-const { TextArea } = Input;
 import { PlusOutlined, DeleteFilled } from "@ant-design/icons";
+
+const { TextArea } = Input;
 
 const BUTTON_MENU_STYLE = {
   fontSize: "1em",

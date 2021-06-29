@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { message } from "antd";
 
-import ViewMode from "./ViewMode";
-import EditMode from "./EditMode";
-import { VIEW_MODE, EDIT_MODE } from "./config";
+import ResumeBody from "./ResumeBody";
 import { initChunk, insertChunk } from "./resumeSlice";
 import { getPreparation } from "./api";
 
@@ -33,8 +31,9 @@ function Resume() {
       });
   }, []);
 
-  if (mode === VIEW_MODE) return <ViewMode />;
-  else if (mode === EDIT_MODE) return <EditMode />;
+  return (
+    <ResumeBody mode={mode} setMode={setMode}></ResumeBody>
+  )
 }
 
 export default Resume;

@@ -16,7 +16,7 @@ import ChunkWrapper from "../chunk/global/ChunkWrapper";
 const { TextArea } = Input;
 
 // declare Chunk ===========================
-export default function Chunk({ id }) {
+export default function Chunk({ id, mode }) {
   const [isEditingChunk, setIsEditingChunk] = useState(true);
 
   const chunk = useSelector(selectChunkById(id));
@@ -25,43 +25,25 @@ export default function Chunk({ id }) {
   var chunk_content = false;
   switch (chunk.type) {
     case "infoChunk_1":
-      chunk_content = <InfoChunk_1 chunk={chunk} id={id}></InfoChunk_1>;
+      chunk_content = <InfoChunk_1 chunk={chunk} id={id} mode={mode}></InfoChunk_1>;
       break;
-    // case "type1":
-    //   chunk_content = (
-    //     <div className="chunk chunk-type1">
-    //       {isEditingChunk ? (
-    //         <p onClick={() => setIsEditingChunk(!isEditingChunk)}>{chunk.value.text}</p>
-    //       ) : (
-    //         <Input
-    //           type="text"
-    //           onChange={(event) => dispatch(updateChunk(id, event.target.value))}
-    //           onBlur={() => setIsEditingChunk(!isEditingChunk)}
-    //           value={chunk.value.text}
-    //           // allowClear
-    //           bordered={false}
-    //         />
-    //       )}
-    //     </div>
-    //   );
-    //   break;
     case "bpChunk_1":
-      chunk_content = <BpChunk_1 chunk={chunk} id={id}></BpChunk_1>;
+      chunk_content = <BpChunk_1 chunk={chunk} id={id} mode={mode}></BpChunk_1>;
       break;
     case "bpChunk_2":
-      chunk_content = <BpChunk_2 chunk={chunk} id={id}></BpChunk_2>;
+      chunk_content = <BpChunk_2 chunk={chunk} id={id} mode={mode}></BpChunk_2>;
       break;
     case "mtChunk_1":
-      chunk_content = <MtChunk_1 chunk={chunk} id={id}></MtChunk_1>;
+      chunk_content = <MtChunk_1 chunk={chunk} id={id} mode={mode}></MtChunk_1>;
       break;
     case "mcChunk_1":
-      chunk_content = <McChunk_1 chunk={chunk} id={id}></McChunk_1>;
+      chunk_content = <McChunk_1 chunk={chunk} id={id} mode={mode}></McChunk_1>;
       break;
     case "lineChunk_1":
-      chunk_content = <LineChunk_1 chunk={chunk} id={id}></LineChunk_1>;
+      chunk_content = <LineChunk_1 chunk={chunk} id={id} mode={mode}></LineChunk_1>;
     default:
       break;
   }
 
-  return <ChunkWrapper chunkId={id}>{chunk_content}</ChunkWrapper>;
+  return <ChunkWrapper chunkId={id} mode={mode}>{chunk_content}</ChunkWrapper>;
 }

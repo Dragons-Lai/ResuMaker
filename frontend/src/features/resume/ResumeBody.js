@@ -2,10 +2,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectSidebarStatus } from "./resumeSlice";
 import { Layout, Menu, Button } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
-import "../../styles/ViewMode.css";
+import "../../styles/ResumeBody.css";
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { VIEW_MODE, EDIT_MODE } from "./config";
+import { UpPadding, DownPadding } from "../chunk"
 import { selectChunkIdList, selectChangeRecord, clearChangeRecord } from "./resumeSlice";
 import Chunk from "./Chunk";
 import Sidebar from "./Sidebar";
@@ -14,7 +16,7 @@ import { logout } from "../homePage/api";
 
 const { Header, Sider, Content } = Layout;
 
-export default function ViewMode() {
+export default function ResumeBody({ mode, setMode }) {
   const dispatch = useDispatch();
 
   const chunkIdList = useSelector(selectChunkIdList);
@@ -30,6 +32,14 @@ export default function ViewMode() {
     );
   };
 
+  const modeOppsite = {}
+  modeOppsite[EDIT_MODE] = VIEW_MODE
+  modeOppsite[VIEW_MODE] = EDIT_MODE
+
+  const changeModeText = {}
+  changeModeText[EDIT_MODE] = "View"
+  changeModeText[VIEW_MODE] = "Edit"
+
   return (
     <Layout>
       <Header>
@@ -43,8 +53,7 @@ export default function ViewMode() {
               icon={<SaveOutlined />}
               onClick={() => {
                 saveChunk(chunkIdList, changeRecord).then(() => dispatch(clearChangeRecord()));
-              }}
-            >
+              }}>
               Save
             </Button>
           </Menu.Item>
@@ -53,14 +62,24 @@ export default function ViewMode() {
               Logout
             </Button>
           </Menu.Item>
+          <Menu.Item key="editMode">
+            <Button type="primary" onClick={() => setMode(modeOppsite[mode])}>
+              {changeModeText[mode]}
+            </Button>
+          </Menu.Item>
         </Menu>
       </Header>
       <Layout>
         <Content>
-          <div className="container">
-            {chunkIdList.map((chunkId) => {
-              return <Chunk key={chunkId} id={chunkId} />;
-            })}
+          <div className="protector-container">
+            <div className={`chunk-container ${mode}`}>
+              <UpPadding></UpPadding>
+              {chunkIdList.map((chunkId) => {
+                return <Chunk key={chunkId} id={chunkId} mode={mode} />;
+              })}
+              <DownPadding></DownPadding>
+            </div>
+            <div className={`view-mode-protector ${mode}`}></div>
           </div>
         </Content>
         {React.createElement(openSidebar ? sider : nothing)}

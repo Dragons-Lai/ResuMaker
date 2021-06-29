@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Modal, Button, Tabs, Input, Row, Col, Divider, message } from "antd";
+import { EditFilled, PlusOutlined, DeleteFilled } from "@ant-design/icons";
 
 import { updateChunk } from "../../resume/resumeSlice";
 import "./InfoChunk_1.css";
 import "../global/config.css";
 import Icon, { iconKeyList } from "../global/Icon";
-import { EditFilled, PlusOutlined, DeleteFilled } from "@ant-design/icons";
+
 
 const { TabPane } = Tabs;
 const { TextArea } = Input;
