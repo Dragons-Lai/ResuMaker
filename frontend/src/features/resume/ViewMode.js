@@ -24,7 +24,15 @@ export default function ViewMode() {
   const nothing = () => <></>;
   const sider = () => {
     return (
-      <Sider theme="light">
+      <Sider
+        theme="light"
+        style={{
+          overflow: "auto",
+          height: "100vh",
+          position: "fixed",
+          right: 0,
+        }}
+      >
         <Sidebar />
       </Sider>
     );
