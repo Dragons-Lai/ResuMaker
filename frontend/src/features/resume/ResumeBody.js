@@ -1,8 +1,10 @@
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectSidebarStatus } from "./resumeSlice";
-import { Layout, Menu, Button } from "antd";
-import { SaveOutlined } from "@ant-design/icons";
+import { Col, Row, Layout, Space, Button, Avatar } from "antd";
+import { SaveOutlined, HomeTwoTone, UserOutlined } from "@ant-design/icons";
 import "../../styles/ResumeBody.css";
+import "../../styles/scss/_navbar.scss";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -11,7 +13,7 @@ import { UpPadding, DownPadding } from "../chunk"
 import { selectChunkIdList, selectChangeRecord, clearChangeRecord } from "./resumeSlice";
 import Chunk from "./Chunk";
 import Sidebar from "./Sidebar";
-import { saveChunk } from "./api";
+import { saveChunk, getUserName } from "./api";
 import { logout } from "../homePage/api";
 
 const { Header, Sider, Content } = Layout;
@@ -23,10 +25,27 @@ export default function ResumeBody({ mode, setMode }) {
   const changeRecord = useSelector(selectChangeRecord);
   // to make the sidebar collapsible
   const openSidebar = useSelector(selectSidebarStatus);
+  const [userName, setUserName] = useState("")
+
+  useEffect(() => {
+    getUserName().then((res) => {
+      setUserName(res)
+    })
+  }, [])
+
+
   const nothing = () => <></>;
   const sider = () => {
     return (
-      <Sider theme="light">
+      <Sider
+        theme="light"
+        style={{
+          overflow: "auto",
+          height: "100vh",
+          position: "fixed",
+          left: 0,
+        }}
+      >
         <Sidebar />
       </Sider>
     );
@@ -43,31 +62,40 @@ export default function ResumeBody({ mode, setMode }) {
   return (
     <Layout>
       <Header>
-        <Menu mode="horizontal">
-          <Menu.Item key="thomepage">
-            <Link to="/">Homepage</Link>
-          </Menu.Item>
-          <Menu.Item key="save">
-            <Button
-              type="primary"
-              icon={<SaveOutlined />}
-              onClick={() => {
-                saveChunk(chunkIdList, changeRecord).then(() => dispatch(clearChangeRecord()));
-              }}>
-              Save
-            </Button>
-          </Menu.Item>
-          <Menu.Item key="logout">
-            <Button type="primary" onClick={() => logout()}>
+        <Row>
+          <Col span={8}>
+            <Space size="small">
+              <Link to="/">
+                <Button className=" navbar-button-group home-button" icon={<HomeTwoTone />} />
+              </Link>
+              <Button
+                className="save-button"
+                type="primary"
+                icon={<SaveOutlined />}
+                onClick={() => {
+                  saveChunk(chunkIdList, changeRecord).then(() => dispatch(clearChangeRecord()));
+                }}
+              >
+                Save
+              </Button>
+              <Button type="primary" onClick={() => setMode(modeOppsite[mode])}>
+                {changeModeText[mode]}
+              </Button>
+            </Space>
+          </Col>
+          <Col span={12} />
+          <Col span={2}>
+            <div className="user-name-row">
+              <Avatar shape="square" size="small" icon={<UserOutlined />} />
+              <p className="user-name">{userName}</p>
+            </div>
+          </Col>
+          <Col span={2}>
+            <Button className="logout-button" type="primary" onClick={() => logout()}>
               Logout
             </Button>
-          </Menu.Item>
-          <Menu.Item key="editMode">
-            <Button type="primary" onClick={() => setMode(modeOppsite[mode])}>
-              {changeModeText[mode]}
-            </Button>
-          </Menu.Item>
-        </Menu>
+          </Col>
+        </Row>
       </Header>
       <Layout>
         <Content>
@@ -84,6 +112,6 @@ export default function ResumeBody({ mode, setMode }) {
         </Content>
         {React.createElement(openSidebar ? sider : nothing)}
       </Layout>
-    </Layout>
+    </Layout >
   );
 }

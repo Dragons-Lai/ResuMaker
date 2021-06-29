@@ -35,7 +35,7 @@ function LoginForm() {
               window.location = "/register";
             }}
           >
-            register
+            Register
           </button>
         </div>
       </div>

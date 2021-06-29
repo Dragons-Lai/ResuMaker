@@ -30,6 +30,25 @@ function isAuthenticated(req, res, next) {
   res.json({ message: "Not login yet. " });
 }
 
+
+router.get("/getUserName", isAuthenticated, async function (req, res) {
+  try {
+    const user_id = req.user._id;
+    let query = await User.findOne({ _id: user_id });
+
+    if (query === null) {
+      res.send("");
+    } else {
+      const userName = query.userName;
+      res.send(userName);
+    }
+  } catch (e) {
+    console.log(e);
+    res.json({ message: "Something went wrong..." });
+  }
+});
+
+
 router.get("/getOrder", isAuthenticated, async function (req, res) {
   try {
     const user_id = req.user._id;

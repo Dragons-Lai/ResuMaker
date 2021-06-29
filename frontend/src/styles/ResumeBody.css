@@ -28,3 +28,12 @@ body {
 .view-mode-protector.edit {
   z-index: -1;
 }
+
+.user-name-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-name {
+  color: white;
+}

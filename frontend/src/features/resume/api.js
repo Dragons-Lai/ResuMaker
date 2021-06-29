@@ -46,3 +46,9 @@ export async function saveChunk(ChunkIdList, changeRecord) {
   });
   console.log(response.data.message);
 }
+
+export async function getUserName() {
+  const response = await axios.get("/getUserName");
+  const userName = response.data
+  return userName
+}
