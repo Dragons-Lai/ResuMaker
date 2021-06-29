@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { VIEW_MODE, DEFAULT_CHUNK_VALUE } from "./config";
 // import { TITLE, DURATION, COMPANY, DESCRIPTION } from "./constants";
 
@@ -31,7 +31,7 @@ export const resumeSlice = createSlice({
           // case "type1":
           //   state.chunkList[targetIdx].value.text = data;
           case "infoChunk_1":
-            switch (metadata) {
+            switch (metadata[0]) {
               case "title":
                 state.chunkList[targetIdx].value.title = data;
                 break;
@@ -42,7 +42,9 @@ export const resumeSlice = createSlice({
                 state.chunkList[targetIdx].value.icon_pair = data;
                 break;
             }
+            break;
           case "bpChunk_1":
+          case "bpChunk_2":
             switch (metadata[0]) {
               case "title":
                 state.chunkList[targetIdx].value.text[metadata[1]][0] = data;
@@ -51,6 +53,9 @@ export const resumeSlice = createSlice({
                 state.chunkList[targetIdx].value.text[metadata[1]][1] = data;
                 break;
               case "insert":
+                if ((state.chunkList[targetIdx].value.text.length === 4) & (state.chunkList[targetIdx].type === "bpChunk_2")) {
+                  break;
+                }
                 state.chunkList[targetIdx].value.text = [
                   ...state.chunkList[targetIdx].value.text.slice(0, metadata[1] + 1),
                   ["BulletPoint", "1. \n2. \n3. "],
@@ -64,8 +69,11 @@ export const resumeSlice = createSlice({
                 ];
                 break;
             }
+            break;
           case "mtChunk_1":
+          case "mcChunk_1":
             state.chunkList[targetIdx].value.text = data;
+            break;
           // case "type2":
           //   state.chunkList[targetIdx].value.text = data;
           //   break;
@@ -81,14 +89,15 @@ export const resumeSlice = createSlice({
           //   }
           //   break;
           default:
-            const targetIdx2 = state.changeRecord["update"].findIndex((chunk) => chunk.id === chunkId);
-            if (targetIdx2 === -1) {
-              state.changeRecord["update"].push(state.chunkList[targetIdx]);
-            } else {
-              state.changeRecord["update"].splice(targetIdx2, 1, state.chunkList[targetIdx]);
-            }
-          // console.log(`Update chunk ${chunkId}`);
+            break;
         }
+        const targetIdx2 = state.changeRecord["update"].findIndex((chunk) => chunk.id === chunkId);
+        if (targetIdx2 === -1) {
+          state.changeRecord["update"].push(state.chunkList[targetIdx]);
+        } else {
+          state.changeRecord["update"].splice(targetIdx2, 1, state.chunkList[targetIdx]);
+        }
+        // console.log(`Update chunk ${chunkId}`);
       },
       prepare(chunkId, data, metadata) {
         return {

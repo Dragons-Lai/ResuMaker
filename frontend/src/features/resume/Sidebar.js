@@ -50,7 +50,7 @@ export default function Sidebar() {
             dispatch(insertChunk(currentChunkId, "bpChunk_1", "down"));
             dispatch(sidebarSwitch());
           }}
-          className="sidebarChunkType1"
+          className="sidebarChunkType2"
           style={{ width: 180, margin: 10 }}
         >
           <Meta description="bpChunk_1" />
@@ -61,13 +61,41 @@ export default function Sidebar() {
           hoverable
           cover={<img alt="type-3" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           onClick={() => {
+            dispatch(insertChunk(currentChunkId, "bpChunk_2", "down"));
+            dispatch(sidebarSwitch());
+          }}
+          className="sidebarChunkType3"
+          style={{ width: 180, margin: 10 }}
+        >
+          <Meta description="bpChunk_2" />
+        </Card>
+      </Row>
+      <Row>
+        <Card
+          hoverable
+          cover={<img alt="type-4" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+          onClick={() => {
             dispatch(insertChunk(currentChunkId, "mtChunk_1", "down"));
             dispatch(sidebarSwitch());
           }}
-          className="sidebarChunkType1"
+          className="sidebarChunkType4"
           style={{ width: 180, margin: 10 }}
         >
           <Meta description="mtChunk_1" />
+        </Card>
+      </Row>
+      <Row>
+        <Card
+          hoverable
+          cover={<img alt="type-5" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+          onClick={() => {
+            dispatch(insertChunk(currentChunkId, "mcChunk_1", "down"));
+            dispatch(sidebarSwitch());
+          }}
+          className="sidebarChunkType5"
+          style={{ width: 180, margin: 10 }}
+        >
+          <Meta description="mcChunk_1" />
         </Card>
       </Row>
     </div>

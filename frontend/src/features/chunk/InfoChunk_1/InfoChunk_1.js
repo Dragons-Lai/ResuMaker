@@ -31,19 +31,19 @@ export default ({ chunk, id }) => {
   const [title, setTitle] = [
     chunk.value.title,
     (data) => {
-      dispatch(updateChunk(id, data, "title"));
+      dispatch(updateChunk(id, data, ["title"]));
     },
   ];
   const [content, setContent] = [
     chunk.value.content,
     (data) => {
-      dispatch(updateChunk(id, data, "content"));
+      dispatch(updateChunk(id, data, ["content"]));
     },
   ];
   const [iconPair, setIconPair] = [
     chunk.value.icon_pair,
     (data) => {
-      dispatch(updateChunk(id, data, "icon_pair"));
+      dispatch(updateChunk(id, data, ["icon_pair"]));
     },
   ];
 
