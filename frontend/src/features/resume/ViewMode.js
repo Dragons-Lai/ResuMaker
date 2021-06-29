@@ -1,8 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { selectSidebarStatus } from "./resumeSlice";
-import { Layout, Menu, Button } from "antd";
-import { SaveOutlined } from "@ant-design/icons";
+import { Col, Row, Layout, Space, Button, Avatar } from "antd";
+import { SaveOutlined, HomeTwoTone, UserOutlined } from "@ant-design/icons";
 import "../../styles/ViewMode.css";
+import "../../styles/scss/_navbar.scss";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -30,7 +31,7 @@ export default function ViewMode() {
           overflow: "auto",
           height: "100vh",
           position: "fixed",
-          right: 0,
+          left: 0,
         }}
       >
         <Sidebar />
@@ -41,27 +42,35 @@ export default function ViewMode() {
   return (
     <Layout>
       <Header>
-        <Menu mode="horizontal">
-          <Menu.Item key="thomepage">
-            <Link to="/">Homepage</Link>
-          </Menu.Item>
-          <Menu.Item key="save">
-            <Button
-              type="primary"
-              icon={<SaveOutlined />}
-              onClick={() => {
-                saveChunk(chunkIdList, changeRecord).then(() => dispatch(clearChangeRecord()));
-              }}
-            >
-              Save
-            </Button>
-          </Menu.Item>
-          <Menu.Item key="logout">
-            <Button type="primary" onClick={() => logout()}>
+        <Row>
+          <Col span={8}>
+            <Space size="small">
+              <Link to="/">
+                <Button className=" navbar-button-group home-button" icon={<HomeTwoTone />} />
+              </Link>
+              <Button
+                className="save-button"
+                type="primary"
+                icon={<SaveOutlined />}
+                onClick={() => {
+                  saveChunk(chunkIdList, changeRecord).then(() => dispatch(clearChangeRecord()));
+                }}
+              >
+                Save
+              </Button>
+            </Space>
+          </Col>
+          <Col span={12} />
+          <Col span={2}>
+            Welcome
+            <Avatar shape="square" size="small" icon={<UserOutlined />} />
+          </Col>
+          <Col span={2}>
+            <Button className="logout-button" type="primary" onClick={() => logout()}>
               Logout
             </Button>
-          </Menu.Item>
-        </Menu>
+          </Col>
+        </Row>
       </Header>
       <Layout>
         <Content>
