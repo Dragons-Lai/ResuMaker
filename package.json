@@ -1,9 +1,5 @@
 {
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.5.1",
-    "axios": "^0.21.1",
-    "redux": "^4.1.0"
-  },
+  "dependencies": {},
   "scripts": {
     "start": "cd frontend && yarn start",
     "server": "cd backend && yarn server"
