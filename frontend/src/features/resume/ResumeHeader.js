@@ -73,9 +73,13 @@ export default function ResumeBody({ mode, setMode }) {
             </Space>
           </Col>
           <Col span={12} />
-          <Col span={2}>
+          <Col span={1}>
+            <Avatar alt={userName} shape="square">
+              {userName}
+            </Avatar>
+          </Col>
+          <Col span={1}>
             <div className="user-name-row">
-              <Avatar shape="square" size="small" icon={<UserOutlined />} />
               <p className="user-name">{userName}</p>
             </div>
           </Col>
