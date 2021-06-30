@@ -93,8 +93,8 @@ export default function ResumeBody({ mode, setMode }) {
           <Select defaultValue={sharable === true ? "sharable" : "unsharable"} style={{ width: 120 }} onChange={(value) => {
             updateSharable(value)
           }}>
-            <Option value={false} label="unsharable">unshared</Option>
             <Option value={true} label="sharable">shared</Option>
+            <Option value={false} label="unsharable">unshared</Option>
           </Select>
         </Space>
       }

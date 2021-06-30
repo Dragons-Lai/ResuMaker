@@ -13,9 +13,8 @@ const { TabPane } = Tabs;
 const { TextArea } = Input;
 
 const DEFAULT_ICON_PAIR = {
-  icon: "PhoneFilled",
-  text: "Your phone",
-  hyperLink: "",
+  icon: "MailFilled",
+  text: "XXXXX@gmail.com",
 };
 
 const BUTTON_MENU_STYLE = {
@@ -25,7 +24,6 @@ const BUTTON_MENU_STYLE = {
 export default ({ chunk, id }) => {
   const dispatch = useDispatch();
   const [iconSelectIcon, setIconSelectIcon] = useState("");
-  const [hyperLink, setHyperLink] = useState("");
   const [visible, setVisible] = useState(false);
 
   const [selectIconPair, setSelectIconPair] = useState(null);
@@ -54,30 +52,26 @@ export default ({ chunk, id }) => {
       <TextArea autoSize bordered={false} className="content" value={content} onChange={(e) => setContent(e.target.value)} />
 
       <Row className="info-chunk_1 icon-pair-list">
-        {iconPair.map((item, i) => {
-          var haveLinkStyle = {};
-          if (item.hyperLink) {
-            haveLinkStyle["color"] = "rgb(146, 195, 241)";
-          }
-          return (
-            <div className="info-chunk_1 icon-pair-wrapper" key={i}>
-              {/*key不知道可不可以用 idx*/}
-              <div className="info-chunk_1 icon-pair">
-                <Icon type={item.icon} style={Object.assign(haveLinkStyle, { padding: "0 5px" })}></Icon>
-                <input
-                  value={item.text}
-                  onChange={(e) => {
-                    var newIconPair = iconPair.map((map_item) => ({ ...map_item }));
-                    newIconPair[i].text = e.target.value;
-                    setIconPair(newIconPair);
-                  }}
-                  size={item.text.length * 1.25}
-                  style={haveLinkStyle}
-                />
-              </div>
-              <Row className="info-chunk_1 hover-button-menu">
-                <Row>
-                  {/* <div style={{ padding: "0 3px" }}>
+        {
+          iconPair.map((item, i) => {
+            return (
+              <div className="info-chunk_1 icon-pair-wrapper" key={i}>
+                {/*key不知道可不可以用 idx*/}
+                <div className="info-chunk_1 icon-pair">
+                  <Icon type={item.icon} style={{ padding: "0 5px" }}></Icon>
+                  <input
+                    value={item.text}
+                    onChange={(e) => {
+                      var newIconPair = iconPair.map((map_item) => ({ ...map_item }));
+                      newIconPair[i].text = e.target.value;
+                      setIconPair(newIconPair);
+                    }}
+                    size={item.text.length * 1.25}
+                  />
+                </div>
+                <Row className="info-chunk_1 hover-button-menu">
+                  <Row>
+                    {/* <div style={{ padding: "0 3px" }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-return-right" viewBox="0 0 16 16">
                       <path
                         fillRule="evenodd"
@@ -85,39 +79,38 @@ export default ({ chunk, id }) => {
                       />
                     </svg>
                   </div> */}
-                  <Button
-                    type="primary"
-                    onClick={() => {
-                      setSelectIconPair(i);
-                      setIconSelectIcon(item.icon);
-                      setHyperLink(item.hyperLink);
-                      setVisible(true);
-                    }}
-                    icon={<EditFilled style={BUTTON_MENU_STYLE} />}
-                  ></Button>
+                    <Button
+                      type="primary"
+                      onClick={() => {
+                        setSelectIconPair(i);
+                        setIconSelectIcon(item.icon);
+                        setVisible(true);
+                      }}
+                      icon={<EditFilled style={BUTTON_MENU_STYLE} />}
+                    ></Button>
 
-                  <Button
-                    type="primary"
-                    onClick={() => {
-                      var newIconPair = [...iconPair.slice(0, i + 1), { ...DEFAULT_ICON_PAIR }, ...iconPair.slice(i + 1, iconPair.length)];
-                      setIconPair(newIconPair);
-                    }}
-                    icon={<PlusOutlined style={BUTTON_MENU_STYLE} />}
-                  ></Button>
+                    <Button
+                      type="primary"
+                      onClick={() => {
+                        var newIconPair = [...iconPair.slice(0, i + 1), { ...DEFAULT_ICON_PAIR }, ...iconPair.slice(i + 1, iconPair.length)];
+                        setIconPair(newIconPair);
+                      }}
+                      icon={<PlusOutlined style={BUTTON_MENU_STYLE} />}
+                    ></Button>
 
-                  <Button
-                    type="primary"
-                    onClick={() => {
-                      if (iconPair.length > 1) setIconPair(iconPair.filter((filter_item, filter_i) => filter_i !== i));
-                      else message.error("Delete Error! You should at least have one icon pair. ");
-                    }}
-                    icon={<DeleteFilled style={BUTTON_MENU_STYLE} />}
-                  ></Button>
+                    <Button
+                      type="primary"
+                      onClick={() => {
+                        if (iconPair.length > 1) setIconPair(iconPair.filter((filter_item, filter_i) => filter_i !== i));
+                        else message.error("Delete Error! You should at least have one icon pair. ");
+                      }}
+                      icon={<DeleteFilled style={BUTTON_MENU_STYLE} />}
+                    ></Button>
+                  </Row>
                 </Row>
-              </Row>
-            </div>
-          );
-        })}
+              </div>
+            );
+          })}
       </Row>
       <Modal
         centered
@@ -126,7 +119,6 @@ export default ({ chunk, id }) => {
           var newIconPair = iconPair.map((map_item) => ({ ...map_item }));
           newIconPair[selectIconPair] = Object.assign(newIconPair[selectIconPair], {
             icon: iconSelectIcon,
-            hyperLink,
           });
           setIconPair(newIconPair);
           setVisible(false);
@@ -160,9 +152,6 @@ export default ({ chunk, id }) => {
                 );
               })}
             </Row>
-          </TabPane>
-          <TabPane tab="Hyper Link" key="hyper-link">
-            <Input value={hyperLink} placeholder="Hyper Link" allowClear size="large" onChange={(e) => setHyperLink(e.target.value)} />
           </TabPane>
         </Tabs>
       </Modal>
