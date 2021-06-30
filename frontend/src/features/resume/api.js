@@ -55,9 +55,11 @@ export async function getUserName() {
 
 export async function setSharable(sharable) {
   const response = await axios.post("/setSharable", { sharable });
+  return response.data
 }
 
 export async function getSharable() {
+  // return the sharable value after setting.
   const response = await axios.get("/getSharable");
   const sharble = response.data;
   return sharble;

@@ -23,7 +23,8 @@ export default function ResumeBody({ mode, setMode }) {
 
   const [userName, setUserName] = useState("");
   const [shareModelVisibility, setShareModelVisibility] = useState(false);
-  const [sharable, updateSharable] = useState(false);
+  const [sharableOption, setShareOption] = useState(false);
+  const [remoteSharable, setRemoteSharable] = useState(false)
   const [sharableUrlSuffix, setSharableUrlSuffix] = useState("");
 
   useEffect(() => {
@@ -31,8 +32,8 @@ export default function ResumeBody({ mode, setMode }) {
       setUserName(res);
     });
     getSharable().then((res) => {
-      console.log("aaaaaaaaaaa", res);
-      updateSharable(res.sharable);
+      setRemoteSharable(res.sharable);
+      setShareOption(res.sharable)
       setSharableUrlSuffix(res.url_suffix);
     });
   }, []);
@@ -91,24 +92,31 @@ export default function ResumeBody({ mode, setMode }) {
           <Space align="center">
             ShareLink
             <Select
-              defaultValue={sharable === true ? "sharable" : "unsharable"}
-              style={{ width: 120 }}
+              defaultValue={sharableOption === true ? "sharable" : "unsharable"}
+              style={{ width: "10em" }}
               onChange={(value) => {
-                updateSharable(value);
+                setShareOption(value);
               }}
             >
               <Option value={true} label="sharable">
-                shared
+                sharable
               </Option>
               <Option value={false} label="unsharable">
-                unshared
+                unsharable
               </Option>
             </Select>
+            Current: {remoteSharable === true ? "sharable" : "unsharable"}
           </Space>
         }
         visible={shareModelVisibility}
         onOk={() => {
-          setSharable(sharable);
+          setSharable(sharableOption)
+            .then((res) => {
+              setRemoteSharable(res);
+            })
+            .catch(err =>
+              console.log(err)
+            );
           setShareModelVisibility(false);
         }}
         onCancel={() => {
