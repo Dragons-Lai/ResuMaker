@@ -20,8 +20,8 @@ export default ({ chunk, id }) => {
         return (
           <div className="bpchunk_1-container" key={index}>
             <div className="bpchunk_1 textarea">
-              <TextArea autoSize bordered={false} className="title" value={element[0]} onChange={(e) => dispatch(updateChunk(id, e.target.value, ["title", index]))} />
-              <TextArea autoSize bordered={false} className="content" value={element[1]} onChange={(e) => dispatch(updateChunk(id, e.target.value, ["content", index]))} />
+              <TextArea autoSize={{ maxRows: 100 }} bordered={false} className="title" value={element[0]} onChange={(e) => dispatch(updateChunk(id, e.target.value, ["title", index]))} />
+              <TextArea autoSize={{ maxRows: 100 }} bordered={false} className="content" value={element[1]} onChange={(e) => dispatch(updateChunk(id, e.target.value, ["content", index]))} />
             </div>
             <Row className="hover-button-menu2">
               <Button

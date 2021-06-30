@@ -37,3 +37,15 @@ body {
 .user-name {
   color: white;
 }
+
+header.ant-layout-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100000000;
+  /* yes the above z-index is a hack */
+}
+
+.sidebar-open {
+  background-color: lightgrey;
+}
