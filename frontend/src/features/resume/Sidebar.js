@@ -1,10 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { insertChunk, sidebarSwitch, selectCurrentChunkId } from "./resumeSlice";
-import bpchunk1Img from "../../img/sidebar/bpchunk1.png";
-import bpchunk2Img from "../../img/sidebar/bpchunk2.png";
-import titleImg from "../../img/sidebar/title.png";
-import contentImg from "../../img/sidebar/content.png";
-import lineImg from "../../img/sidebar/line.png";
+import { bpchunk1Img, bpchunk2Img, titleImg, contentImg, lineImg, infochunk1Img } from "../../img";
 import { Button, Row, Card } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 
@@ -78,7 +74,21 @@ export default function Sidebar() {
       <Row>
         <Card
           hoverable
-          cover={<img alt="type-6" src={lineImg} />}
+          cover={<img alt="type-6" src={infochunk1Img} />}
+          onClick={() => {
+            dispatch(insertChunk(currentChunkId, "infoChunk_1", "down"));
+            dispatch(sidebarSwitch());
+          }}
+          className="sidebarChunkType6"
+          style={{ width: 180, margin: 10 }}
+        >
+          <Meta description="綜合資訊" />
+        </Card>
+      </Row>
+      <Row>
+        <Card
+          hoverable
+          cover={<img alt="type-7" src={lineImg} />}
           onClick={() => {
             dispatch(insertChunk(currentChunkId, "lineChunk_1", "down"));
             dispatch(sidebarSwitch());
