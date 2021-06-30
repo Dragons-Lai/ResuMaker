@@ -19,7 +19,7 @@ mongo.connect();
 const app = express();
 app.use(
   cors({
-    origin: ["http://172.105.208.68:3000"], // 這裡之後要替換成我們服務綁定的網址
+    origin: ["http://172.105.208.68:3000", "http://172.105.208.68:80"], // 這裡之後要替換成我們服務綁定的網址
     credentials: true,
   })
 );
