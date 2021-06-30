@@ -10,7 +10,7 @@ export default ({ chunk, id }) => {
   return (
     <div className="chunk" id={id}>
       <div className="textarea">
-        <TextArea autoSize bordered={false} className="maintitle" value={chunk.value.text} onChange={(e) => dispatch(updateChunk(id, e.target.value, []))} />
+        <TextArea autoSize={{ maxRows: 1000 }} bordered={false} className="maintitle" value={chunk.value.text} onChange={(e) => dispatch(updateChunk(id, e.target.value, []))} />
       </div>
     </div>
   );
