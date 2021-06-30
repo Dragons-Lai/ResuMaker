@@ -15,11 +15,11 @@ export default ({ chunk, id }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="chunk" id={id}>
+    <div className="bpchunk_1 chunk" id={id}>
       {chunk.value.text.map((element, index) => {
         return (
-          <div className="bpchunk_1" key={index}>
-            <div className="textarea">
+          <div className="bpchunk_1-container" key={index}>
+            <div className="bpchunk_1 textarea">
               <TextArea autoSize bordered={false} className="title" value={element[0]} onChange={(e) => dispatch(updateChunk(id, e.target.value, ["title", index]))} />
               <TextArea autoSize bordered={false} className="content" value={element[1]} onChange={(e) => dispatch(updateChunk(id, e.target.value, ["content", index]))} />
             </div>

@@ -48,29 +48,21 @@ export default ({ chunk, id }) => {
     },
   ];
 
-  // function onblur_handler(e) {
-  //   if (e.relatedTarget) {
-  //     if (!(e.relatedTarget.closest(".chunk") && e.relatedTarget.closest(".chunk").id === id)) {
-
-  //     }
-  //   }
-  // }
-
   return (
-    <div className="chunk" id={id}>
+    <div className="info-chunk_1 chunk" id={id}>
       <TextArea autoSize bordered={false} className="title" value={title} onChange={(e) => setTitle(e.target.value)} />
       <TextArea autoSize bordered={false} className="content" value={content} onChange={(e) => setContent(e.target.value)} />
 
-      <Row className="icon-pair-list">
+      <Row className="info-chunk_1 icon-pair-list">
         {iconPair.map((item, i) => {
           var haveLinkStyle = {};
           if (item.hyperLink) {
             haveLinkStyle["color"] = "rgb(146, 195, 241)";
           }
           return (
-            <div className="icon-pair-wrapper" key={i}>
+            <div className="info-chunk_1 icon-pair-wrapper" key={i}>
               {/*key不知道可不可以用 idx*/}
-              <div className="icon-pair">
+              <div className="info-chunk_1 icon-pair">
                 <Icon type={item.icon} style={Object.assign(haveLinkStyle, { padding: "0 5px" })}></Icon>
                 <input
                   value={item.text}
@@ -83,7 +75,7 @@ export default ({ chunk, id }) => {
                   style={haveLinkStyle}
                 />
               </div>
-              <Row className="hover-button-menu">
+              <Row className="info-chunk_1 hover-button-menu">
                 <Row>
                   {/* <div style={{ padding: "0 3px" }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-return-right" viewBox="0 0 16 16">
@@ -155,7 +147,7 @@ export default ({ chunk, id }) => {
                 return (
                   <Col
                     span={4}
-                    className="icon-selection"
+                    className="info-chunk_1 icon-selection"
                     key={i}
                     style={colStyle}
                     onClick={() => {

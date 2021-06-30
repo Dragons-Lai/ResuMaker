@@ -5,12 +5,7 @@ import { Input } from "antd";
 import { updateChunk } from "./resumeSlice";
 import { selectChunkById } from "./resumeSlice";
 // import { TITLE, DURATION, COMPANY, DESCRIPTION } from "./constants";
-import InfoChunk_1 from "../chunk/InfoChunk_1/InfoChunk_1";
-import BpChunk_1 from "../chunk/BpChunk_1/BpChunk_1";
-import BpChunk_2 from "../chunk/BpChunk_2/BpChunk_2";
-import MtChunk_1 from "../chunk/MtChunk_1/MtChunk_1";
-import McChunk_1 from "../chunk/McChunk_1/McChunk_1";
-import LineChunk_1 from "../chunk/LineChunk_1/LineChunk_1";
+import { InfoChunk_1, BpChunk_1, BpChunk_2, MtChunk_1, LineChunk_1 } from "../chunk";
 import ChunkWrapper from "../chunk/global/ChunkWrapper";
 
 const { TextArea } = Input;
@@ -35,9 +30,6 @@ export default function Chunk({ id, mode }) {
       break;
     case "mtChunk_1":
       chunk_content = <MtChunk_1 chunk={chunk} id={id} mode={mode}></MtChunk_1>;
-      break;
-    case "mcChunk_1":
-      chunk_content = <McChunk_1 chunk={chunk} id={id} mode={mode}></McChunk_1>;
       break;
     case "lineChunk_1":
       chunk_content = <LineChunk_1 chunk={chunk} id={id} mode={mode}></LineChunk_1>;

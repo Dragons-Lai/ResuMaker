@@ -3,8 +3,26 @@
   background-color: white;
 }
 
+.chunk {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: left;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .buttonMenu {
   display: none;
+}
+
+input,
+input:focus {
+  border: 0;
+  outline: none;
 }
 
 .chunk-wrapper:hover .buttonMenu,

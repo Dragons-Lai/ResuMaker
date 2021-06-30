@@ -1,13 +1,13 @@
 import axios from "../../axios";
 
 // getChunk && getOrder
-export async function getPreparation() {
+export async function getPreparation(viewee) {
   const {
     data: { ChunkIdList },
-  } = await axios.get("/getOrder");
+  } = await axios.get("/getOrder", { params: { viewee } });
   const {
     data: { ChunkList },
-  } = await axios.get("/getChunk");
+  } = await axios.get("/getChunk", { params: { viewee } });
 
   // console.log("getPreparation___ChunkIdList: ", ChunkIdList);
   // console.log("getPreparation___ChunkList: ", ChunkList);
@@ -51,4 +51,14 @@ export async function getUserName() {
   const response = await axios.get("/getUserName");
   const userName = response.data
   return userName
+}
+
+export async function setSharable(sharable) {
+  const response = await axios.post("/setSharable", { sharable });
+}
+
+export async function getSharable() {
+  const response = await axios.get("/getSharable");
+  const sharble = response.data
+  return sharble
 }

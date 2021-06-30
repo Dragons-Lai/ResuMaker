@@ -2,12 +2,12 @@
   height: 20px;
 }
 
-.background-area {
+.up-padding-background-area {
   height: 100%;
   background-color: transparent;
 }
 
-.resume-area {
+.up-padding-resume-area {
   height: 0%;
   background-color: white;
 }

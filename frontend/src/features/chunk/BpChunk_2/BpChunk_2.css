@@ -1,11 +1,4 @@
-.chunk {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: left;
-}
-
-.bpchunk_2 {
+.bpchunk_2-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -21,12 +14,12 @@
   top: -25px;
 }
 
-.textarea {
+.bpchunk_2.textarea {
   position: relative;
   z-index: 0;
 }
 
-.textarea:hover + .hover-button-menu3,
+.bpchunk_2.textarea:hover + .hover-button-menu3,
 .hover-button-menu3:hover {
   display: inline-block;
 }

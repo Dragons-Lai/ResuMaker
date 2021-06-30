@@ -19,7 +19,7 @@ export default function Sidebar() {
           hoverable
           cover={<img alt="type-1" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           onClick={() => {
-            dispatch(insertChunk(currentChunkId, "infoChunk_1", "down"));
+            dispatch(insertChunk(currentChunkId, "_1", "down"));
             dispatch(sidebarSwitch());
           }}
           className="sidebarChunkType1"

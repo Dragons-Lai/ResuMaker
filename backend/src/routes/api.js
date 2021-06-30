@@ -18,7 +18,7 @@ const COOKIES_OPTIONS = {
 
 const router = Router();
 
-function isAuthenticated(req, res, next) {
+async function isAuthenticated(req, res, next) {
   console.log("Authenticated", req.isAuthenticated());
   // if user is authenticated in the session, carry on
   if (req.isAuthenticated()) {
@@ -28,6 +28,23 @@ function isAuthenticated(req, res, next) {
 
   // if they aren't redirect them to the home page
   res.json({ message: "Not login yet. " });
+}
+
+async function vieweeOrUser(req, res, next) {
+  const viewee = req.query.viewee
+  if (viewee) {
+    const query = await User.findOne({ account: viewee }, "sharable _id")
+    if (query === null || !query.sharable) { // 不在回傳訊息加是找不到人還是他不公開是因為這也是提供給客的訊息
+      res.status(404).json({ message: "Cannot find the resume or the resume is not open. " })
+    }
+    else {
+      req.viewee_id = query._id
+      return next()
+    }
+  }
+  else {
+    isAuthenticated(req, res, next)
+  }
 }
 
 
@@ -48,10 +65,33 @@ router.get("/getUserName", isAuthenticated, async function (req, res) {
   }
 });
 
-
-router.get("/getOrder", isAuthenticated, async function (req, res) {
+router.get("/getSharable", isAuthenticated, async function (req, res) {
   try {
     const user_id = req.user._id;
+    let query = await User.findOne({ _id: user_id }, "sharable account");
+
+    if (query === null) {
+      res.send("");
+    } else {
+      const sharable = query.sharable;
+      res.send({ sharable, url_suffix: query.account }); // url_suffix may change or encrypt in the futer.  
+    }
+  } catch (e) {
+    console.log(e);
+    res.json({ message: "Something went wrong..." });
+  }
+});
+
+
+router.get("/getOrder", vieweeOrUser, async function (req, res) {
+  try {
+    // console.log("getOrder__viewee_id", req.viewee_id)
+    var user_id;
+    if (req.viewee_id)
+      user_id = req.viewee_id;
+    else
+      user_id = req.user._id;
+
     // console.log("getOrder___user_id: ", user_id);
     let query = await Order.findOne({ user_id });
 
@@ -67,10 +107,15 @@ router.get("/getOrder", isAuthenticated, async function (req, res) {
   }
 });
 
-router.get("/getChunk", isAuthenticated, async function (req, res) {
+router.get("/getChunk", vieweeOrUser, async function (req, res) {
   try {
-    const user_id = req.user._id;
+    var user_id;
+    if (req.viewee_id)
+      user_id = req.viewee_id;
+    else
+      user_id = req.user._id;
 
+    console.log("getChunk___parms: ", req.query)
     // console.log("getChunk___user_id: ", user_id);
     let query = await Chunk.find({ user_id });
 
@@ -126,7 +171,7 @@ router.post("/updateChunk", isAuthenticated, async function (req, res) {
     // console.log("updateChunk___user_id: ", user_id);
     // console.log("updateChunk___UpdateChunk: ", UpdateChunk);
 
-    let condition = { id: UpdateChunk.id };
+    let condition = { user_id, id: UpdateChunk.id };
     const query = await Chunk.findOne(condition);
     if (query === null) {
       const chunk = new Chunk({
@@ -142,6 +187,26 @@ router.post("/updateChunk", isAuthenticated, async function (req, res) {
       await Chunk.findOneAndUpdate(condition, update);
     }
     res.json({ message: "updateChunk done" });
+  } catch (e) {
+    console.log(e);
+    res.json({ message: "Something went wrong..." });
+  }
+});
+
+router.post("/setSharable", isAuthenticated, async function (req, res) {
+  try {
+    console.log(req.body)
+    const { sharable } = req.body;
+    const user_id = req.user._id;
+
+    // console.log("updateChunk___user_id: ", user_id);
+    // console.log("updateChunk___UpdateChunk: ", UpdateChunk);
+
+    let condition = { _id: user_id };
+    console.log("setSharable: ", sharable);
+    await User.findOneAndUpdate(condition, { sharable });
+
+    res.json({ message: "setSharable done" });
   } catch (e) {
     console.log(e);
     res.json({ message: "Something went wrong..." });

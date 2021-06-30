@@ -1,16 +1,4 @@
-.chunk {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: left;
-}
-
-.title {
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.icon-pair-wrapper {
+.info-chunk_1.icon-pair-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -18,14 +6,14 @@
   position: relative;
 }
 
-.icon-pair-list {
+.info-chunk_1.icon-pair-list {
   width: 100%;
   /* background-color: rgb(209, 209, 209); */
   display: flex;
   flex-direction: row;
 }
 
-.hover-button-menu {
+.info-chunk_1.hover-button-menu {
   background-color: rgb(212, 211, 211);
   display: none;
   position: absolute;
@@ -34,7 +22,7 @@
   width: 7.5vw;
 }
 
-.icon-pair {
+.info-chunk_1.icon-pair {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -44,12 +32,12 @@
   z-index: 0;
 }
 
-.icon-pair:hover + .hover-button-menu,
-.hover-button-menu:hover {
+.info-chunk_1.icon-pair:hover + .info-chunk_1.hover-button-menu,
+.info-chunk_1.hover-button-menu:hover {
   display: inline-block;
 }
 
-.icon-selection {
+.info-chunk_1.icon-selection {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -65,10 +53,4 @@
 
 .icon-selection > p {
   margin: 0;
-}
-
-input,
-input:focus {
-  border: 0;
-  outline: none;
 }
