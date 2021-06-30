@@ -8,7 +8,6 @@ import ResumeBody from "./ResumeBody";
 import { initChunk, insertChunk } from "./resumeSlice";
 import { getPreparation } from "./api";
 
-
 function ViewResume() {
   let { url_suffix } = useParams();
 
@@ -25,9 +24,7 @@ function ViewResume() {
       });
   }, []);
 
-  return (
-    <ResumeBody mode={VIEW_MODE}></ResumeBody>
-  )
+  return <ResumeBody mode={VIEW_MODE}></ResumeBody>;
 }
 
 export default ViewResume;

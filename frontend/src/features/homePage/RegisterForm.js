@@ -55,7 +55,7 @@ function RegisterForm() {
           </button>
         </div>
       </form>
-    </UnAuthWrapper >
+    </UnAuthWrapper>
   );
 }
 

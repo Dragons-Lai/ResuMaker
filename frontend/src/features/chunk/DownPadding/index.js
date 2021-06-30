@@ -1,4 +1,4 @@
-import "./DownPadding.css"
+import "./DownPadding.css";
 
 export default function () {
   return (
@@ -6,5 +6,5 @@ export default function () {
       <div className="down-padding-resume-area"></div>
       <div className="down-padding-background-area"></div>
     </div>
-  )
+  );
 }

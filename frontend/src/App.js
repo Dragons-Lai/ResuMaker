@@ -28,8 +28,7 @@ function App() {
             <Resume />
           </AuthWrapper>
         </Route>
-        <Route path="/viewResume/:url_suffix" children={<ViewResume />} >
-        </Route>
+        <Route path="/viewResume/:url_suffix" children={<ViewResume />}></Route>
       </Switch>
     </Router>
   );
