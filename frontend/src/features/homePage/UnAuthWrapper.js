@@ -7,6 +7,6 @@ export default function UnAuthWrapper({ children }) {
 
   // console.log("tset", isLogin);
 
-  if (isLogin) return <Redirect to="/" />;
+  if (isLogin) return <Redirect to="/resume" />;
   else return children;
 }
