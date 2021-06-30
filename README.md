@@ -35,13 +35,6 @@ cd backend && yarn server
 
 # 功能介紹
 
-
-
-#- [線上履歷表](#線上履歷表)
-- [線上履歷表](#線上履歷表)
-- [Localhost 執行方式](#localhost-執行方式)
-- [功能介紹](#功能介紹)
-
 賴群龍: 
 - 前端路由控制
 - chunk樣式(type2~type6)
