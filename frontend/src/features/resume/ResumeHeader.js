@@ -75,7 +75,7 @@ export default function ResumeBody({ mode, setMode }) {
           <Col span={12} />
           <Col span={1}>
             <Avatar alt={userName} shape="square">
-              {userName}
+              {userName.charAt(0)}
             </Avatar>
           </Col>
           <Col span={1}>
