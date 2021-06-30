@@ -1,0 +1,13 @@
+.up-padding {
+  height: 20px;
+}
+
+.up-padding-background-area {
+  height: 100%;
+  background-color: transparent;
+}
+
+.up-padding-resume-area {
+  height: 0%;
+  background-color: white;
+}

@@ -17,6 +17,10 @@ const UserSchema = new Schema({
     type: String,
     required: [true, "password field is required."],
   },
+  sharable: {
+    type: Boolean,
+    required: [false],
+  },
 });
 
 UserSchema.pre("save", function (next) {

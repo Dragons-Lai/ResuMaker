@@ -7,6 +7,7 @@ import "./styles/scss/_header.scss";
 
 import { Loginform, Registerform, Homepage } from "./features/homePage";
 import Resume from "./features/resume";
+import ViewResume from "./features/resume/ViewResume";
 import AuthWrapper from "./features/resume/AuthWrapper";
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
           <AuthWrapper>
             <Resume />
           </AuthWrapper>
+        </Route>
+        <Route path="/viewResume/:url_suffix" children={<ViewResume />} >
         </Route>
       </Switch>
     </Router>
