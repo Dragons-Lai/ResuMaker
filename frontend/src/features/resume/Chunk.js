@@ -1,21 +1,13 @@
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Input } from "antd";
+import { useSelector } from "react-redux";
 
-import { updateChunk } from "./resumeSlice";
 import { selectChunkById } from "./resumeSlice";
 // import { TITLE, DURATION, COMPANY, DESCRIPTION } from "./constants";
 import { InfoChunk_1, BpChunk_1, BpChunk_2, MtChunk_1, McChunk_1, LineChunk_1 } from "../chunk";
 import ChunkWrapper from "../chunk/global/ChunkWrapper";
 
-const { TextArea } = Input;
-
 // declare Chunk ===========================
 export default function Chunk({ id, mode }) {
-  const [isEditingChunk, setIsEditingChunk] = useState(true);
-
   const chunk = useSelector(selectChunkById(id));
-  const dispatch = useDispatch();
 
   var chunk_content = false;
   switch (chunk.type) {

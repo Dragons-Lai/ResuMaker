@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { saveChunk, getUserName, getSharable, setSharable } from "./api";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Row, Space, Button, Avatar, Modal, Select } from "antd";
-import { SaveOutlined, HomeTwoTone, UserOutlined } from "@ant-design/icons";
+import { SaveOutlined, HomeTwoTone } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Layout } from "antd";
 
 import { VIEW_MODE, EDIT_MODE } from "./config";
 import { logout } from "../homePage/api";
-import { selectChunkIdList, selectChangeRecord, clearChangeRecord, selectSidebarStatus } from "./resumeSlice";
+import { selectChunkIdList, selectChangeRecord, clearChangeRecord } from "./resumeSlice";
 
 const { Header } = Layout;
 const { Option } = Select;
@@ -18,8 +18,6 @@ export default function ResumeBody({ mode, setMode }) {
 
   const changeRecord = useSelector(selectChangeRecord);
   const chunkIdList = useSelector(selectChunkIdList);
-  // to make the sidebar collapsible
-  const openSidebar = useSelector(selectSidebarStatus);
 
   const [userName, setUserName] = useState("");
   const [shareModelVisibility, setShareModelVisibility] = useState(false);
