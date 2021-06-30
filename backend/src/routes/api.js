@@ -187,6 +187,7 @@ router.post("/updateChunk", isAuthenticated, async function (req, res) {
 });
 
 router.post("/setSharable", isAuthenticated, async function (req, res) {
+  // return the sharable value after setting. 
   try {
     console.log(req.body);
     const { sharable } = req.body;

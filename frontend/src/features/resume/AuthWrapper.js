@@ -5,8 +5,6 @@ export default function AuthWrapper({ children }) {
   const cookies = new Cookies();
   const isLogin = cookies.get("isLogin");
 
-  // console.log("tset", isLogin);
-
   if (!isLogin) return <Redirect to="/" />;
   else return children;
 }

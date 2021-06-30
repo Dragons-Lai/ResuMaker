@@ -24,7 +24,7 @@ export default function ResumeBody({ mode }) {
         theme="light"
         style={{
           overflow: "auto",
-          height: "100vh",
+          height: "92vh",
           position: "fixed",
           left: 0,
         }}

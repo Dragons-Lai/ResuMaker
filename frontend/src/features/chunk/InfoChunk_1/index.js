@@ -47,8 +47,8 @@ export default ({ chunk, id }) => {
 
   return (
     <div className="info-chunk_1 chunk" id={id}>
-      <TextArea autoSize bordered={false} className="title" value={title} onChange={(e) => setTitle(e.target.value)} />
-      <TextArea autoSize bordered={false} className="content" value={content} onChange={(e) => setContent(e.target.value)} />
+      <TextArea autoSize={{ maxRows: 1000 }} bordered={false} className="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+      <TextArea autoSize={{ maxRows: 1000 }} bordered={false} className="content" value={content} onChange={(e) => setContent(e.target.value)} />
 
       <Row className="info-chunk_1 icon-pair-list">
         {iconPair.map((item, i) => {
