@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { saveChunk, getUserName, getSharable, setSharable } from "./api";
 import { useSelector, useDispatch } from "react-redux";
 import { Col, Row, Space, Button, Avatar, Modal, Select } from "antd";
-import { SaveOutlined, HomeTwoTone } from "@ant-design/icons";
+import { SaveOutlined, HomeTwoTone, SmileFilled } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Layout } from "antd";
 
@@ -74,7 +74,7 @@ export default function ResumeBody({ mode, setMode }) {
           <Col span={12} />
           <Col span={1}>
             <Avatar alt={userName} shape="square">
-              {userName.charAt(0)}
+              <SmileFilled style={{ color: "#001529", fontSize: "20px" }} />
             </Avatar>
           </Col>
           <Col span={1}>
