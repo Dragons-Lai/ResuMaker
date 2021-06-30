@@ -20,6 +20,7 @@ cd backend && yarn
 
 ```
 MONGO_URL=mongodb+srv://....
+PORT=5000
 ```
 
 3. 可以到根目錄去執行 `yarn start` 或者開兩個 console 來個別執行 `yarn start` 和 `yarn server`
