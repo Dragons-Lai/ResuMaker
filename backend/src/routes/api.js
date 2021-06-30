@@ -31,22 +31,20 @@ async function isAuthenticated(req, res, next) {
 }
 
 async function vieweeOrUser(req, res, next) {
-  const viewee = req.query.viewee
+  const viewee = req.query.viewee;
   if (viewee) {
-    const query = await User.findOne({ account: viewee }, "sharable _id")
-    if (query === null || !query.sharable) { // 不在回傳訊息加是找不到人還是他不公開是因為這也是提供給客的訊息
-      res.status(404).json({ message: "Cannot find the resume or the resume is not open. " })
+    const query = await User.findOne({ account: viewee }, "sharable _id");
+    if (query === null || !query.sharable) {
+      // 不在回傳訊息加是找不到人還是他不公開是因為這也是提供給客的訊息
+      res.status(404).json({ message: "Cannot find the resume or the resume is not open. " });
+    } else {
+      req.viewee_id = query._id;
+      return next();
     }
-    else {
-      req.viewee_id = query._id
-      return next()
-    }
-  }
-  else {
-    isAuthenticated(req, res, next)
+  } else {
+    isAuthenticated(req, res, next);
   }
 }
-
 
 router.get("/getUserName", isAuthenticated, async function (req, res) {
   try {
@@ -74,7 +72,7 @@ router.get("/getSharable", isAuthenticated, async function (req, res) {
       res.send("");
     } else {
       const sharable = query.sharable;
-      res.send({ sharable, url_suffix: query.account }); // url_suffix may change or encrypt in the futer.  
+      res.send({ sharable, url_suffix: query.account }); // url_suffix may change or encrypt in the futer.
     }
   } catch (e) {
     console.log(e);
@@ -82,15 +80,12 @@ router.get("/getSharable", isAuthenticated, async function (req, res) {
   }
 });
 
-
 router.get("/getOrder", vieweeOrUser, async function (req, res) {
   try {
     // console.log("getOrder__viewee_id", req.viewee_id)
     var user_id;
-    if (req.viewee_id)
-      user_id = req.viewee_id;
-    else
-      user_id = req.user._id;
+    if (req.viewee_id) user_id = req.viewee_id;
+    else user_id = req.user._id;
 
     // console.log("getOrder___user_id: ", user_id);
     let query = await Order.findOne({ user_id });
@@ -110,12 +105,10 @@ router.get("/getOrder", vieweeOrUser, async function (req, res) {
 router.get("/getChunk", vieweeOrUser, async function (req, res) {
   try {
     var user_id;
-    if (req.viewee_id)
-      user_id = req.viewee_id;
-    else
-      user_id = req.user._id;
+    if (req.viewee_id) user_id = req.viewee_id;
+    else user_id = req.user._id;
 
-    console.log("getChunk___parms: ", req.query)
+    console.log("getChunk___parms: ", req.query);
     // console.log("getChunk___user_id: ", user_id);
     let query = await Chunk.find({ user_id });
 
@@ -195,7 +188,7 @@ router.post("/updateChunk", isAuthenticated, async function (req, res) {
 
 router.post("/setSharable", isAuthenticated, async function (req, res) {
   try {
-    console.log(req.body)
+    console.log(req.body);
     const { sharable } = req.body;
     const user_id = req.user._id;
 

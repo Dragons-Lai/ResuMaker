@@ -5,7 +5,7 @@ import "../../styles/ResumeBody.css";
 import "../../styles/scss/_navbar.scss";
 import React from "react";
 
-import { UpPadding, DownPadding } from "../chunk"
+import { UpPadding, DownPadding } from "../chunk";
 import { selectChunkIdList } from "./resumeSlice";
 import Chunk from "./Chunk";
 import Sidebar from "./Sidebar";
@@ -13,7 +13,6 @@ import Sidebar from "./Sidebar";
 const { Sider, Content } = Layout;
 
 export default function ResumeBody({ mode }) {
-
   const chunkIdList = useSelector(selectChunkIdList);
   // to make the sidebar collapsible
   const openSidebar = useSelector(selectSidebarStatus);
@@ -37,7 +36,6 @@ export default function ResumeBody({ mode }) {
 
   return (
     <Layout>
-
       <Layout>
         <Content>
           <div className="protector-container">
@@ -53,6 +51,6 @@ export default function ResumeBody({ mode }) {
         </Content>
         {React.createElement(openSidebar ? sider : nothing)}
       </Layout>
-    </Layout >
+    </Layout>
   );
 }

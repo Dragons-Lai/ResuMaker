@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { message } from "antd";
 
-import ResumeHeader from "./ResumeHeader"
+import ResumeHeader from "./ResumeHeader";
 import ResumeBody from "./ResumeBody";
 import { initChunk, insertChunk } from "./resumeSlice";
 import { getPreparation } from "./api";
@@ -26,10 +26,12 @@ function Resume() {
       });
   }, []);
 
-  return (<>
-    <ResumeHeader mode={mode} setMode={setMode}></ResumeHeader>
-    <ResumeBody mode={mode}></ResumeBody>
-  </>)
+  return (
+    <>
+      <ResumeHeader mode={mode} setMode={setMode}></ResumeHeader>
+      <ResumeBody mode={mode}></ResumeBody>
+    </>
+  );
 }
 
 export default Resume;

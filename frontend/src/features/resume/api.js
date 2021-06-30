@@ -49,8 +49,8 @@ export async function saveChunk(ChunkIdList, changeRecord) {
 
 export async function getUserName() {
   const response = await axios.get("/getUserName");
-  const userName = response.data
-  return userName
+  const userName = response.data;
+  return userName;
 }
 
 export async function setSharable(sharable) {
@@ -59,6 +59,6 @@ export async function setSharable(sharable) {
 
 export async function getSharable() {
   const response = await axios.get("/getSharable");
-  const sharble = response.data
-  return sharble
+  const sharble = response.data;
+  return sharble;
 }

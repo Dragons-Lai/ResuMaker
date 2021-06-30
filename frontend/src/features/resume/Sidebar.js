@@ -3,7 +3,7 @@ import { insertChunk, sidebarSwitch, selectCurrentChunkId } from "./resumeSlice"
 import { Button, Row, Card } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 
-// const { Meta } = Card;
+const { Meta } = Card;
 
 export default function Sidebar() {
   const dispatch = useDispatch();
@@ -14,6 +14,20 @@ export default function Sidebar() {
       <Row>
         <Button type="text" icon={<CloseOutlined />} onClick={() => dispatch(sidebarSwitch())} block />
       </Row>
+      {/* <Row>
+        <Card
+          hoverable
+          cover={<img alt="type-1" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+          onClick={() => {
+            dispatch(insertChunk(currentChunkId, "type1", "down"));
+            dispatch(sidebarSwitch());
+          }}
+          className="sidebarChunkType1"
+          style={{ width: 180, margin: 10 }}
+        >
+          <Meta description="Chunk Type1" />
+        </Card>
+      </Row> */}
       <Row>
         <Card
           hoverable
@@ -24,7 +38,9 @@ export default function Sidebar() {
           }}
           className="sidebarChunkType1"
           style={{ width: 180, margin: 10 }}
-        ></Card>
+        >
+          <Meta description="個人資訊" />
+        </Card>
       </Row>
       <Row>
         <Card
@@ -36,7 +52,9 @@ export default function Sidebar() {
           }}
           className="sidebarChunkType2"
           style={{ width: 180, margin: 10 }}
-        ></Card>
+        >
+          <Meta description="列點式（樣式一）" />
+        </Card>
       </Row>
       <Row>
         <Card
@@ -48,7 +66,9 @@ export default function Sidebar() {
           }}
           className="sidebarChunkType3"
           style={{ width: 180, margin: 10 }}
-        ></Card>
+        >
+          <Meta description="列點式（樣式二）" />
+        </Card>
       </Row>
       <Row>
         <Card
@@ -60,7 +80,9 @@ export default function Sidebar() {
           }}
           className="sidebarChunkType4"
           style={{ width: 180, margin: 10 }}
-        ></Card>
+        >
+          <Meta description="標題" />
+        </Card>
       </Row>
       <Row>
         <Card
@@ -72,7 +94,9 @@ export default function Sidebar() {
           }}
           className="sidebarChunkType5"
           style={{ width: 180, margin: 10 }}
-        ></Card>
+        >
+          <Meta description="任意文字" />
+        </Card>
       </Row>
       <Row>
         <Card
@@ -84,7 +108,9 @@ export default function Sidebar() {
           }}
           className="sidebarChunkType6"
           style={{ width: 180, margin: 10 }}
-        ></Card>
+        >
+          <Meta description="直線" />
+        </Card>
       </Row>
     </div>
   );
