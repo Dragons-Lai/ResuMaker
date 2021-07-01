@@ -1,4 +1,12 @@
 # ResuMaker
+## 組別
+24組
+
+## 成員
+- B06705030 蕭昀豪
+- B06705046 彭穎飛
+- B05702021 賴群龍
+
 ## 預覽頁面
 ### Home Page
 <a href="https://youtu.be/tiKfVrLaVGU"><img alt="home page" src="./img/homePage.png"></a>
@@ -80,7 +88,7 @@ app.use(
 <p>{`http://172.105.208.68:80/viewResume/${sharableUrlSuffix}`}</p>
 ```
 
-- `./frontend/arc/axios.js` 把網址從 `localhost` 改成實際IP和PORT
+- `./frontend/src/axios.js` 把網址從 `localhost` 改成實際IP和PORT
 
 ```javascript=5
 baseURL: `http://172.105.208.68:5000`
