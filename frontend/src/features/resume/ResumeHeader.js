@@ -22,7 +22,7 @@ export default function ResumeBody({ mode, setMode }) {
   const [userName, setUserName] = useState("");
   const [shareModelVisibility, setShareModelVisibility] = useState(false);
   const [sharableOption, setShareOption] = useState(false);
-  const [remoteSharable, setRemoteSharable] = useState(false)
+  const [remoteSharable, setRemoteSharable] = useState(false);
   const [sharableUrlSuffix, setSharableUrlSuffix] = useState("");
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function ResumeBody({ mode, setMode }) {
     });
     getSharable().then((res) => {
       setRemoteSharable(res.sharable);
-      setShareOption(res.sharable)
+      setShareOption(res.sharable);
       setSharableUrlSuffix(res.url_suffix);
     });
   }, []);
@@ -116,9 +116,7 @@ export default function ResumeBody({ mode, setMode }) {
             .then((res) => {
               setRemoteSharable(res);
             })
-            .catch(err =>
-              console.log(err)
-            );
+            .catch((err) => console.log(err));
           setShareModelVisibility(false);
         }}
         onCancel={() => {
@@ -127,7 +125,7 @@ export default function ResumeBody({ mode, setMode }) {
         okText="Set"
         cancelText="Cancel"
       >
-        <p>{`http://localhost:3000/viewResume/${sharableUrlSuffix}`}</p>
+        <p>{`http://172.105.208.68:80/viewResume/${sharableUrlSuffix}`}</p>
       </Modal>
     </>
   );
