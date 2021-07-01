@@ -1,9 +1,15 @@
 # ResuMaker
 ## 預覽頁面
 ### Home Page
-![home page](img/homePage.png)
+<a href="https://youtu.be/tiKfVrLaVGU"><img alt="home page" src="./img/homePage.png"></a>
+
 ### Edit Resume Page
-![home page](img/resuMaker.png)
+<a href="https://youtu.be/tiKfVrLaVGU"><img alt="edit resume page" src="./img/resuMaker.png"></a>
+
+## 介紹影片連結
+也可點擊上面圖片
+
+[https://youtu.be/tiKfVrLaVGU](https://youtu.be/tiKfVrLaVGU)
 
 ## 服務介紹
 【介紹】
