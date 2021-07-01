@@ -20,7 +20,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "http://li1862-68.members.linode.com/",
+      "http://li1862-68.members.linode.com",
       "http://172.105.208.68",
       "http://172.105.208.68:3000",
       "http://localhost:3000",
