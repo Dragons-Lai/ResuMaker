@@ -19,7 +19,12 @@ mongo.connect();
 const app = express();
 app.use(
   cors({
-    origin: ["http://172.105.208.68", "http://172.105.208.68:3000", "http://localhost:3000"], // 這裡之後要替換成我們服務綁定的網址
+    origin: [
+      "http://li1862-68.members.linode.com/",
+      "http://172.105.208.68",
+      "http://172.105.208.68:3000",
+      "http://localhost:3000",
+    ], // 這裡之後要替換成我們服務綁定的網址
     credentials: true,
   })
 );
