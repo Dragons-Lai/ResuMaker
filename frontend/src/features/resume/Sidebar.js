@@ -25,7 +25,7 @@ export default function Sidebar() {
           }}
           className="sidebarChunkType2"
           style={{ width: 900, margin: 10 }}
-          bodyStyle={{ backgroundColor: '#BDD7EE' }}
+          bodyStyle={{ backgroundColor: 'lightgrey' }}
         >
           <Meta description="列點式（樣式一）" />
         </Card>
@@ -40,7 +40,7 @@ export default function Sidebar() {
           }}
           className="sidebarChunkType3"
           style={{ width: 180, margin: 10 }}
-          bodyStyle={{ backgroundColor: '#BDD7EE' }}
+          bodyStyle={{ backgroundColor: 'lightgrey' }}
         >
           <Meta description="列點式（樣式二）" />
         </Card>
@@ -55,7 +55,7 @@ export default function Sidebar() {
           }}
           className="sidebarChunkType4"
           style={{ width: 180, margin: 10 }}
-          bodyStyle={{ backgroundColor: '#BDD7EE' }}
+          bodyStyle={{ backgroundColor: 'lightgrey' }}
         >
           <Meta description="標題" />
         </Card>
@@ -70,7 +70,7 @@ export default function Sidebar() {
           }}
           className="sidebarChunkType5"
           style={{ width: 180, margin: 10 }}
-          bodyStyle={{ backgroundColor: '#BDD7EE' }}
+          bodyStyle={{ backgroundColor: 'lightgrey' }}
         >
           <Meta description="任意文字" />
         </Card>
@@ -85,7 +85,7 @@ export default function Sidebar() {
           }}
           className="sidebarChunkType6"
           style={{ width: 180, margin: 10 }}
-          bodyStyle={{ backgroundColor: '#BDD7EE' }}
+          bodyStyle={{ backgroundColor: 'lightgrey' }}
         >
           <Meta description="綜合資訊" />
         </Card>
@@ -100,7 +100,7 @@ export default function Sidebar() {
           }}
           className="sidebarChunkType6"
           style={{ width: 180, margin: 10 }}
-          bodyStyle={{ backgroundColor: '#BDD7EE' }}
+          bodyStyle={{ backgroundColor: 'lightgrey' }}
         >
           <Meta description="直線" />
         </Card>
