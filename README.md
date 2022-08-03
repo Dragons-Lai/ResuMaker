@@ -9,15 +9,13 @@
 
 ## 預覽頁面
 ### Home Page
-<a href="https://youtu.be/tiKfVrLaVGU"><img alt="home page" src="./img/homePage.png"></a>
+<a href="https://youtu.be/R3rLPsVxOU8"><img alt="home page" src="./img/homePage.png"></a>
 
 ### Edit Resume Page
-<a href="https://youtu.be/tiKfVrLaVGU"><img alt="edit resume page" src="./img/resuMaker.png"></a>
+<a href="https://youtu.be/R3rLPsVxOU8"><img alt="edit resume page" src="./img/resuMaker.png"></a>
 
 ## 介紹影片連結
-也可點擊上面圖片
-
-[https://youtu.be/tiKfVrLaVGU](https://youtu.be/tiKfVrLaVGU)
+[https://youtu.be/R3rLPsVxOU8](https://youtu.be/R3rLPsVxOU8)
 
 ## 服務介紹
 【介紹】
@@ -35,7 +33,7 @@ ResuMaker 旨在協助求職者快速打造適合自己的履歷。我們提供�
 
 ## 執行方式
 
-Deployed 連結：http://172.105.208.68/
+Deployed 連結：
 
 ### Localhost 執行方式
 
