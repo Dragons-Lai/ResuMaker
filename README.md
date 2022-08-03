@@ -33,11 +33,9 @@ ResuMaker 旨在協助求職者快速打造適合自己的履歷。我們提供�
 
 ## 執行方式
 
-Deployed 連結：
-
 ### Localhost 執行方式
 
-1. 到 `./frontend` 和 `./backend` 裡面先安裝好 npm 套件
+1. 到 `./frontend` 和 `./backend` 裡面先安裝套件
 ```bash
 cd frontend && yarn
 cd backend && yarn
@@ -50,52 +48,11 @@ MONGO_URL=mongodb+srv://....
 PORT=5000
 ```
 
-3. 可以到根目錄去執行 `yarn start` 或者開兩個 console 來個別執行 `yarn start` 和 `yarn server`
+3. 開兩個 console 來個別執行 `yarn start` 和 `yarn server`
 
 ```bash
-yarn start
-
-# 或者
-
 cd frontend && yarn start
 cd backend && yarn server
-```
-
-### Deploy 的改變地方
-
-Deploy 版本的各種 IP 和 PORT 和 `localhost` 會不一樣，要跟著一下的步驟完成更改
-
-#### 後端
-
-- `./backend/src/server.js` 要更替origin的網址，換成實際導出的網址
-
-```javascript=20
-app.use(
-  cors({
-    origin: ["http://172.105.208.68"], // 這裡之後要替換成我們服務綁定的網址
-    credentials: true,
-  })
-);
-```
-
-#### 前端
-
-- `./frontend/src/features/resume/ResumeHeader.js` 更改原設定為`localhost` 的網域
-
-```javascript=128
-<p>{`http://172.105.208.68:80/viewResume/${sharableUrlSuffix}`}</p>
-```
-
-- `./frontend/src/axios.js` 把網址從 `localhost` 改成實際IP和PORT
-
-```javascript=5
-baseURL: `http://172.105.208.68:5000`
-```
-
-- `./frontend/.env` 更改前端PORT
-
-```
-PORT=80
 ```
 
 
