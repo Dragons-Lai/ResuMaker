@@ -11,15 +11,15 @@
 ### Home Page
 <a href="https://youtu.be/R3rLPsVxOU8"><img alt="home page" src="./img/homePage.png"></a>
 
-### Edit Resume Page
+### Resume Page
 <a href="https://youtu.be/R3rLPsVxOU8"><img alt="edit resume page" src="./img/resuMaker.png"></a>
 
-## 介紹影片連結
-[https://youtu.be/R3rLPsVxOU8](https://youtu.be/R3rLPsVxOU8)
+## 介紹影片
+[影片連結](https://youtu.be/R3rLPsVxOU8)
 
 ## 服務介紹
 【介紹】
-ResuMaker 旨在協助求職者快速打造適合自己的履歷。我們提供多樣化的區塊設計讓使用者彈性編排合適的履歷風格，並實作 UI 無差異的 Edit/View 模式讓使用者能「所見及所得」地編輯履歷。在使用者精心編撰履歷後，我們更提供履歷分享服務，讓使用者能隨心所欲地分享自己編撰的履歷給求職對象、親友過目。我們由衷期望使用者能利用 ResuMaker 順利求得理想職缺。
+ResuMaker 旨在協助求職者快速打造適合自己的履歷。我們提供多樣化的區塊設計讓使用者能自由編撰履歷，並實作 Edit/View 模式讓使用者能在完成履歷後，分享自己編撰的履歷給求職對象、親友過目。我們由衷期望使用者能利用 ResuMaker 順利求得理想職缺。
 
 【使用流程】
 1. 註冊
@@ -90,5 +90,7 @@ app.use(
 * 未登入者禁止進入resume頁面
 * 已登入者禁止進入 register、login 頁面。
 
+<!--
 ## ReadMe: 注意事項
 在儲存履歷時，不能在按下儲存後立即離開頁面，需要稍等一會兒讓程式運行。
+-->
