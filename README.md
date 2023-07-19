@@ -1,96 +1,50 @@
 # ResuMaker
-## 組別
-24組
-
-## 成員
-- B06705030 蕭昀豪
-- B06705046 彭穎飛
-- B05702021 賴群龍
-
-## 預覽頁面
+## Preview
 ### Home Page
-<a href="https://youtu.be/R3rLPsVxOU8"><img alt="home page" src="./img/homePage.png"></a>
+<a href="https://youtu.be/R3rLPsVxOU8"><img alt="home page" src="./frontend/img/homePage.png"></a>
 
 ### Resume Page
-<a href="https://youtu.be/R3rLPsVxOU8"><img alt="edit resume page" src="./img/resuMaker.png"></a>
+<a href="https://youtu.be/R3rLPsVxOU8"><img alt="edit resume page" src="./frontend/img/resuMaker.png"></a>
 
-## 介紹影片
-[影片連結](https://youtu.be/R3rLPsVxOU8)
+## Introduction Video (Mandarin)
+[Video Link](https://youtu.be/R3rLPsVxOU8)
 
-## 服務介紹
-【介紹】
-ResuMaker 旨在協助求職者快速打造適合自己的履歷。我們提供多樣化的區塊設計讓使用者能自由編撰履歷，並實作 Edit/View 模式讓使用者能在完成履歷後，分享自己編撰的履歷給求職對象、親友過目。我們由衷期望使用者能利用 ResuMaker 順利求得理想職缺。
+## Project Overview
+ResuMaker is a web application designed to assist job seekers in creating their own resumes. Our platform provides a vast array of templates, empowering users to tailor their resumes according to their needs. Additionally, we've implemented a share feature that allows users to share their resumes with potential employers. Our primary mission with ResuMaker is to simplify the job application process, thereby helping users secure their dream jobs effortlessly.
 
-【使用流程】
-1. 註冊
-1. 登入
-1. 編寫履歷
-1. 新增/修改/刪除區塊
-1. 儲存履歷 (請注意下面的[注意事項](#ReadMe-注意事項))
-1. 預覽履歷
-1. 分享履歷
-1. 登出
+## Application Workflow
+1. Edit the resume 
+2. Save the resume
+3. Share the resume
 
-## 執行方式
+## Environment
+Node.js v14.x.x
 
-### Localhost 執行方式
+## Execution
 
-1. 到 `./frontend` 和 `./backend` 裡面先安裝套件
+Follow the steps below to run the project on your local machine.
+
+1. First, head to `./frontend` and `./backend` directories to initiate the package installation process.
 ```bash
 cd frontend && yarn
 cd backend && yarn
 ```
 
-2. 先準備一個 monogdb 的 url 寫入 `./backend/.env`:
-
+2. Next, set up a MongoDB URL and insert it into `./backend/.env`:
 ```
 MONGO_URL=mongodb+srv://....
 PORT=5000
 ```
 
-3. 開兩個 console 來個別執行 `yarn start` 和 `yarn server`
-
+3. Lastly, open two separate terminals to execute `yarn start` and `yarn server` separately.
 ```bash
 cd frontend && yarn start
 cd backend && yarn server
 ```
 
+## Features
+### Backend
+We've established a login system leveraging cookie and session methodologies, enhanced by passport.js and express-session.js for streamlined execution. Whenever a new client connects, the server initiates a session and sets up cookies in the client's browser. This setup enables the server to recognize the client during future communications.
 
-## 功能詳述
-### 身分驗證
-#### 後端
-我們使用 cookie and session 的概念實作登入機制，並輔以 passport.js 套件及 express-session.js 精煉流程及程式碼。每當有一新的 client 連線至 server，server 都會派發一個 session 給該使用者，同時在回覆中加上 set-cookie 表頭在 client 的瀏覽器設定對應的 cookies。在未來，client 只要與 server 溝通時都能附加上該 cookies，server 就能成功識別該 client。
-
-接著，若使用者連線成功，server 會在該連線 client 對應的 session 中加入使用者資料，未來只須檢視 client 的 session 是否包含用戶資料，就能知曉該 client 是否登入以及所屬帳戶為何。
-
-值得一提的是，因為 server、client 的溝通過程涉及 cookies 的傳輸，所以需要在此前設定 CORS 的 middleware 建立白名單並允許 credentials，程式碼如下: 
-
-```javascript=20
-//in /backend/src/server.js
-app.use(
-  cors({
-    origin: ["前端 deploy 的 IP"], // 這裡之後要替換成我們服務綁定的網址
-    credentials: true,
-  })
-);
-```
-
-#### 前端
-在 client 登入後，為了讓使用者在刷新頁面時，瀏覽器仍能直接 render 登入時的狀態。當使用者成功登入後，瀏覽器會為其設定 isLogin 的 cookies 方便 react 直接識別。此 cookies 的設計有考慮到資安隱患，不存在使用者變更該 cookies 值就能繞過登入驗證的情形，後端在辨認 client 是否登入時僅相依於 session 機制，該 cookies 的使用單純為方便 react render 前判斷用戶是否登入，舉例而言，未登入者禁止進入resume 頁面，已登入者禁止進入 register、login 頁面。
-
-### 路由控制
-#### 路由
-* /: 首頁
-* /login: 登入
-* /register: 註冊
-* /resume: 履歷製作頁
-* /viewResume: 履歷分享頁
-
-#### 重導向
-* 未登入者禁止進入resume頁面
-* 已登入者禁止進入 register、login 頁面。
-
-<!--
-## ReadMe: 注意事項
-在儲存履歷時，不能在按下儲存後立即離開頁面，需要稍等一會兒讓程式運行。
--->
+### Frontend
+When a client logs in successfully, the browser sets an 'isLogin' cookie, allowing React to maintain login status even after a page refresh. Altering this cookie won't bypass the authentication, as the backend uses session mechanisms exclusively for client identification.
