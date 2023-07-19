@@ -13,7 +13,6 @@ function ViewResume() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    // remote version
     getPreparation(url_suffix)
       .then((chunkList) => {
         dispatch(initChunk(chunkList));

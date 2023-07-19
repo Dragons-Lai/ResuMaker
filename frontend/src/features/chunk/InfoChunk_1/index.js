@@ -54,7 +54,6 @@ export default ({ chunk, id }) => {
         {iconPair.map((item, i) => {
           return (
             <div className="info-chunk_1 icon-pair-wrapper" key={i}>
-              {/*key不知道可不可以用 idx*/}
               <div className="info-chunk_1 icon-pair">
                 <Icon type={item.icon} style={{ padding: "0 5px" }}></Icon>
                 <input
@@ -69,14 +68,6 @@ export default ({ chunk, id }) => {
               </div>
               <Row className="info-chunk_1 hover-button-menu">
                 <Row>
-                  {/* <div style={{ padding: "0 3px" }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-return-right" viewBox="0 0 16 16">
-                      <path
-                        fillRule="evenodd"
-                        d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"
-                      />
-                    </svg>
-                  </div> */}
                   <Button
                     type="primary"
                     onClick={() => {

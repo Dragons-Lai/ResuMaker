@@ -1,11 +1,9 @@
 import { useSelector } from "react-redux";
 
 import { selectChunkById } from "./resumeSlice";
-// import { TITLE, DURATION, COMPANY, DESCRIPTION } from "./constants";
 import { InfoChunk_1, BpChunk_1, BpChunk_2, MtChunk_1, McChunk_1, LineChunk_1 } from "../chunk";
 import ChunkWrapper from "../chunk/global/ChunkWrapper";
 
-// declare Chunk ===========================
 export default function Chunk({ id, mode }) {
   const chunk = useSelector(selectChunkById(id));
 

@@ -9,8 +9,6 @@ export async function getPreparation(viewee) {
     data: { ChunkList },
   } = await axios.get("/getChunk", { params: { viewee } });
 
-  // console.log("getPreparation___ChunkIdList: ", ChunkIdList);
-  // console.log("getPreparation___ChunkList: ", ChunkList);
   let ChunkList_sorted = [];
   let isInitial = (ChunkIdList.length === 0) & (ChunkList.length === 0);
   if (!isInitial) {
@@ -19,16 +17,10 @@ export async function getPreparation(viewee) {
       ChunkList_sorted.push(chunk);
     }
   }
-
-  // console.log("getPreparation___ChunkList_sorted: ", ChunkList_sorted);
-
   return ChunkList_sorted;
 }
 
 export async function saveChunk(ChunkIdList, changeRecord) {
-  // console.log("saveChunk___user_id: ", user_id);
-  // console.log("saveChunk___ChunkIdList: ", ChunkIdList);
-  // console.log("saveChunk___changeRecord: ", changeRecord);
   let response;
   response = await axios.post("/saveOrder", { ChunkIdList });
   console.log(response.data.message);
@@ -40,7 +32,6 @@ export async function saveChunk(ChunkIdList, changeRecord) {
     console.log(response.data.message);
   }
 
-  // 順序很重要，一定要先 Update 再 delete
   response = await axios.post("/deleteChunks", {
     DeleteChunkIdList: changeRecord["delete"],
   });

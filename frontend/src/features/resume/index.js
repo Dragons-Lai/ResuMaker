@@ -12,7 +12,6 @@ function Resume() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    // remote version
     getPreparation()
       .then((chunkList) => {
         dispatch(initChunk(chunkList));

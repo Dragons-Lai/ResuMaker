@@ -1,6 +1,4 @@
-// ===
 // Ref: https://www.mongodb.com/blog/post/password-authentication-with-mongoose-part-1
-// ===
 
 import { Router } from "express";
 import passport from "passport";
@@ -35,7 +33,6 @@ async function vieweeOrUser(req, res, next) {
   if (viewee) {
     const query = await User.findOne({ account: viewee }, "sharable _id");
     if (query === null || !query.sharable) {
-      // 不在回傳訊息加是找不到人還是他不公開是因為這也是提供給客的訊息
       res.status(404).json({ message: "Cannot find the resume or the resume is not open. " });
     } else {
       req.viewee_id = query._id;
@@ -82,12 +79,10 @@ router.get("/getSharable", isAuthenticated, async function (req, res) {
 
 router.get("/getOrder", vieweeOrUser, async function (req, res) {
   try {
-    // console.log("getOrder__viewee_id", req.viewee_id)
     var user_id;
     if (req.viewee_id) user_id = req.viewee_id;
     else user_id = req.user._id;
 
-    // console.log("getOrder___user_id: ", user_id);
     let query = await Order.findOne({ user_id });
 
     if (query === null) {
@@ -109,7 +104,6 @@ router.get("/getChunk", vieweeOrUser, async function (req, res) {
     else user_id = req.user._id;
 
     console.log("getChunk___parms: ", req.query);
-    // console.log("getChunk___user_id: ", user_id);
     let query = await Chunk.find({ user_id });
 
     if (query.length === 0) {
@@ -144,7 +138,6 @@ router.post("/saveOrder", isAuthenticated, async function (req, res) {
 router.post("/deleteChunks", isAuthenticated, async function (req, res) {
   try {
     const { DeleteChunkIdList } = req.body;
-    // console.log("deleteChunks___DeleteChunkIdList: ", DeleteChunkIdList);
     for (var i = 0; i < DeleteChunkIdList.length; i++) {
       let condition = { id: DeleteChunkIdList[i] };
       await Chunk.deleteOne(condition);
@@ -161,9 +154,6 @@ router.post("/updateChunk", isAuthenticated, async function (req, res) {
     const { UpdateChunk } = req.body;
     const user_id = req.user._id;
 
-    // console.log("updateChunk___user_id: ", user_id);
-    // console.log("updateChunk___UpdateChunk: ", UpdateChunk);
-
     let condition = { user_id, id: UpdateChunk.id };
     const query = await Chunk.findOne(condition);
     if (query === null) {
@@ -176,7 +166,6 @@ router.post("/updateChunk", isAuthenticated, async function (req, res) {
       await chunk.save();
     } else {
       let update = { value: UpdateChunk.value };
-      // console.log("update: ", update);
       await Chunk.findOneAndUpdate(condition, update);
     }
     res.json({ message: "updateChunk done" });
@@ -187,14 +176,11 @@ router.post("/updateChunk", isAuthenticated, async function (req, res) {
 });
 
 router.post("/setSharable", isAuthenticated, async function (req, res) {
-  // return the sharable value after setting. 
+  // return the sharable value after setting.
   try {
     console.log(req.body);
     const { sharable } = req.body;
     const user_id = req.user._id;
-
-    // console.log("updateChunk___user_id: ", user_id);
-    // console.log("updateChunk___UpdateChunk: ", UpdateChunk);
 
     let condition = { _id: user_id };
     console.log("setSharable: ", sharable);
@@ -207,8 +193,7 @@ router.post("/setSharable", isAuthenticated, async function (req, res) {
   }
 });
 
-// login and register ==================================================
-// login ---------------------------------------------------------------
+// login
 passport.serializeUser(function (user, done) {
   done(null, user._id);
 });
@@ -219,7 +204,6 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
-// 初始化 Passport
 passport.use(
   "login",
   new LocalStrategy(
@@ -262,13 +246,7 @@ router.post(
   }
 );
 
-// isLogin ---------------------------------------------------------------
-// router.get("/isLogin", (req, res, next) => {
-//   if (req.isAuthenticated()) res.send(true);
-//   else res.send(false);
-// });
-
-// register ---------------------------------------------------------------
+// register
 router.post("/register", (req, res, next) => {
   const userInfo = {
     userName: req.body.userName,
@@ -292,7 +270,7 @@ router.post("/register", (req, res, next) => {
   });
 });
 
-// logout ---------------------------------------------------------------
+// logout
 router.post("/logout", (req, res) => {
   req.logout();
   res.clearCookie("isLogin");

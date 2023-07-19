@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { VIEW_MODE, DEFAULT_CHUNK_VALUE } from "./config";
-// import { TITLE, DURATION, COMPANY, DESCRIPTION } from "./constants";
 
 const initialState = {
   mode: VIEW_MODE,
@@ -28,8 +27,6 @@ export const resumeSlice = createSlice({
 
         const targetIdx = state.chunkList.findIndex((chunk) => chunk.id === chunkId);
         switch (state.chunkList[targetIdx].type) {
-          // case "type1":
-          //   state.chunkList[targetIdx].value.text = data;
           case "infoChunk_1":
             switch (metadata[0]) {
               case "title":
@@ -74,20 +71,6 @@ export const resumeSlice = createSlice({
           case "mcChunk_1":
             state.chunkList[targetIdx].value.text = data;
             break;
-          // case "type2":
-          //   state.chunkList[targetIdx].value.text = data;
-          //   break;
-          // case "type3":
-          //   if (metadata === TITLE) {
-          //     state.chunkList[targetIdx].value.title = data;
-          //   } else if (metadata === DURATION) {
-          //     state.chunkList[targetIdx].value.duration = data;
-          //   } else if (metadata === COMPANY) {
-          //     state.chunkList[targetIdx].value.companyName = data;
-          //   } else if (metadata === DESCRIPTION) {
-          //     state.chunkList[targetIdx].value.description = data;
-          //   }
-          //   break;
           default:
             break;
         }
@@ -97,7 +80,6 @@ export const resumeSlice = createSlice({
         } else {
           state.changeRecord["update"].splice(targetIdx2, 1, state.chunkList[targetIdx]);
         }
-        // console.log(`Update chunk ${chunkId}`);
       },
       prepare(chunkId, data, metadata) {
         return {
@@ -122,7 +104,6 @@ export const resumeSlice = createSlice({
         state.chunkList = [...state.chunkList.slice(0, insertIndex), newChunk, ...state.chunkList.slice(insertIndex, state.chunkList.length)];
 
         state.changeRecord["update"].push(newChunk);
-        // console.log(`Add a new chunk ${newChunk.id}`);
       },
       prepare(chunkId, type, position) {
         return {
@@ -138,7 +119,6 @@ export const resumeSlice = createSlice({
       state.chunkList = state.chunkList.filter((chunk) => chunk.id !== chunkId);
       if (state.changeRecord["delete"].find((id) => id === chunkId) === undefined) {
         state.changeRecord["delete"].push(chunkId);
-        // console.log(`Delete chunk ${chunkId}`);
       }
     },
 

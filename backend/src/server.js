@@ -12,21 +12,17 @@ import routes from "./routes/api.js";
 
 dotenv.config();
 
-// configuration ======================================================
 mongo.connect();
 
-// set up our express application
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:3000"], // 這裡之後要替換成我們服務綁定的網址
+    origin: ["http://localhost:3000"],
     credentials: true,
   })
 );
 app.use(express.json());
 app.use(cookieParser("user_secret"));
-
-// required for passport
 app.use(
   session({
     secret: "user_session",
@@ -44,10 +40,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-// routes ===============================================================
 app.use("/", routes);
 
-// launch ===============================================================
 const server = app.listen(process.env.PORT || 5000, function () {
   console.log("Listening on port " + server.address().port);
 });

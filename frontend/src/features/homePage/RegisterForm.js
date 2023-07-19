@@ -1,4 +1,4 @@
-import React, { useState } from "react"; //rfce: react function component export
+import React, { useState } from "react";
 import "../../styles/RegisterForm.css";
 import UnAuthWrapper from "./UnAuthWrapper";
 import { message } from "antd";

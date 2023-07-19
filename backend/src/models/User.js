@@ -42,12 +42,6 @@ UserSchema.pre("save", function (next) {
   });
 });
 
-// methods ======================
-// generating a hash
-// UserSchema.methods.generateHash = function (password) {
-//   return bcrypt.hashSync(password, bcrypt.genSaltSync(SALT_WORK_FACTOR), null);
-// };
-
 // checking if password is valid
 UserSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
